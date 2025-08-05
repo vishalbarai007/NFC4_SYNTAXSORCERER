@@ -45,7 +45,7 @@ const features = [
 
 export function FeatureGrid() {
   return (
-    <section className="container py-24">
+    <section className="container py-24 mt-[100px]">
       <div className="mx-auto max-w-2xl text-center mb-16">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Professional Tools for Screenwriters 🛠️</h2>
         <p className="text-lg text-muted-foreground">
