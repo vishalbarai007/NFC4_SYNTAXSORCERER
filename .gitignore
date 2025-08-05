@@ -1,0 +1,72 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+
+# Virtual environment
+venv/
+.env/
+.envrc
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# FastAPI/Uvicorn logs
+*.log
+
+# Jupyter notebooks (optional, in case you add one later)
+.ipynb_checkpoints/
+
+# VSCode settings (optional)
+.vscode/
+
+# Dependency metadata
+pip-wheel-metadata/
+
+# Model/agent outputs (optional)
+*.pt
+*.ckpt
+*.h5
+*.onnx
+runs/
+checkpoints/
+models/
+outputs/
+
+# Data / script inputs
+*.json
+*.csv
+*.tsv
+*.xlsx
+*.pdf
+*.txt
+
+# Pytest / coverage
+htmlcov/
+.tox/
+.nox/
+coverage.*
+.cache/
+.pytest_cache/
+test-results/
+
+# Build/dist
+build/
+dist/
+*.egg
+*.whl
+
+# mypy
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Temporary files
+*.bak
+*.swp
+*.tmp
+*.temp
