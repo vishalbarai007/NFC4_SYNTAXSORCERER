@@ -23,7 +23,7 @@ const playwrite = Playwrite_AU_NSW({
 
 
 export const metadata: Metadata = {
-  title: "ScriptCraft - AI-Enhanced Screenwriting Platform",
+  title: "ScriptCraft",
   description: "Write Better. Speak Louder. Feel Deeper. 🎬✨",
   viewport: "width=device-width, initial-scale=1",
   generator: "v0.dev",
