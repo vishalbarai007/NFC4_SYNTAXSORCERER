@@ -16,7 +16,7 @@ export function DashboardHeader() {
         <div className="flex gap-2">
           <Button className="hover-lift bg-gradient-to-r from-primary to-purple-600" asChild>
             <Link href="/upload">
-              <Upload className="mr-2 h-4 w-4" />📄 Upload New Script
+              <Upload className="mr-2 h-4 w-4" /> Upload New Script
             </Link>
           </Button>
           <Button variant="outline" className="hover-lift bg-transparent" asChild>
@@ -36,7 +36,7 @@ export function DashboardHeader() {
           asChild
         >
           <Link href="/workspace/demo?tab=tone">
-            <BarChart3 className="mr-2 h-4 w-4" />📊 Tone Analysis
+            <BarChart3 className="mr-2 h-4 w-4" /> Tone Analysis
           </Link>
         </Button>
         <Button
@@ -45,7 +45,7 @@ export function DashboardHeader() {
           asChild
         >
           <Link href="/workspace/demo?tab=dialogue">
-            <MessageSquare className="mr-2 h-4 w-4" />💬 Dialogue Tools
+            <MessageSquare className="mr-2 h-4 w-4" /> Dialogue Tools
           </Link>
         </Button>
         <Button
@@ -54,7 +54,7 @@ export function DashboardHeader() {
           asChild
         >
           <Link href="/workspace/demo?tab=characters">
-            <Users className="mr-2 h-4 w-4" />👥 Characters
+            <Users className="mr-2 h-4 w-4" /> Characters
           </Link>
         </Button>
         <Button
@@ -63,7 +63,7 @@ export function DashboardHeader() {
           asChild
         >
           <Link href="/workspace/demo?tab=ai">
-            <Brain className="mr-2 h-4 w-4" />🤖 AI Insights
+            <Brain className="mr-2 h-4 w-4" /> AI Insights
           </Link>
         </Button>
       </div>
