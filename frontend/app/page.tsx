@@ -11,7 +11,7 @@ import Galaxy from "@/components/Galaxy"
 export default function HomePage() {
   return (
     // <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-800">
-    <div className="min-h-screen bg-gradient-to-br bg-[#FFD700] dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-800">
+    <div className="min-h-screen bg-gradient-to-br bg-[#dbe9f4] dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-800">
       <Navigation />
       <main className="flex-1">
         {/* <div className="h-screen w-">
