@@ -1,0 +1,30 @@
+[
+  {
+    "scene": "INT. LIVING ROOM - NIGHT",
+    "actions": [
+      "The room is quiet, lit only by moonlight."
+    ],
+    "dialogues": [
+      {
+        "character": "SARAH",
+        "line": "I can't do this anymore."
+      },
+      {
+        "character": "JOHN",
+        "line": "Then don’t."
+      }
+    ]
+  },
+  {
+    "scene": "EXT. PARK - DAY",
+    "actions": [
+      "Birds chirp. Children play in the distance."
+    ],
+    "dialogues": [
+      {
+        "character": "MARK",
+        "line": "It’s a beautiful day, isn’t it?"
+      }
+    ]
+  }
+]
