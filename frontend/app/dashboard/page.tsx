@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { Navigation } from "@/components/navigation"
-import { DashboardHeader } from "@/components/dashboard/dashboard-header"
-import { ScriptHistory } from "@/components/dashboard/script-history"
-import { ProgressMetrics } from "@/components/dashboard/progress-metrics"
-import { RecentFeedback } from "@/components/dashboard/recent-feedback"
-import { QuickActions } from "@/components/dashboard/quick-actions"
+import { DashboardHeader } from "@/components/dashboard/dashboard-header";
+import { ScriptHistory } from "@/components/dashboard/script-history";
+import { ProgressMetrics } from "@/components/dashboard/progress-metrics";
+import { RecentFeedback } from "@/components/dashboard/recent-feedback";
+import { QuickActions } from "@/components/dashboard/quick-actions";
+import { Navigation2 } from "@/components/navigation2";
 
 export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-800">
-      <Navigation />
+      <Navigation2 />
       <div className="container py-4 md:py-8 px-4">
         <DashboardHeader />
         <div className="grid gap-4 md:gap-6 grid-cols-1 lg:grid-cols-3 mt-6 md:mt-8">
@@ -27,5 +27,5 @@ export default function DashboardPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

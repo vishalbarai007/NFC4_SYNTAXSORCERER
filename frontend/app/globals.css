@@ -166,7 +166,8 @@
 
 .hover-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .hover-glow:hover {
@@ -288,7 +289,11 @@
 
 /* Dark mode improvements */
 .dark .bg-gradient-to-br {
-  background: linear-gradient(to bottom right, hsl(var(--background)), hsl(var(--muted)));
+  background: linear-gradient(
+    to bottom right,
+    hsl(var(--background)),
+    hsl(var(--muted))
+  );
 }
 
 /* Ensure proper contrast in dark mode */
@@ -310,3 +315,4 @@
     animation: none;
   }
 }
+

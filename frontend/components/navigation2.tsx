@@ -10,12 +10,12 @@ import dynamic from "next/dynamic";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 // Dynamically import GoogleTranslate to avoid SSR issues
-const GoogleTranslate2 = dynamic(() => import("./google-translate2"), {
+const GoogleTranslate = dynamic(() => import("./google-translate"), {
   ssr: false,
   loading: () => <div className="w-8 h-8 bg-muted rounded animate-pulse" />,
 });
 
-export function Navigation() {
+export function Navigation2() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -38,11 +38,11 @@ export function Navigation() {
               <div className="w-20 h-8 bg-muted rounded animate-pulse" />
             }
           >
-            <GoogleTranslate2 />
+            <GoogleTranslate />
           </Suspense>
           <ModeToggle />
           <Button variant="ghost" className="hover-lift" asChild>
-            {/* <Link href="/dashboard">📊 Dashboard</Link> */}
+            <Link href="/dashboard">📊 Dashboard</Link>
           </Button>
           <Button
             className="hover-lift bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90"
@@ -70,7 +70,7 @@ export function Navigation() {
                       <div className="w-20 h-8 bg-muted rounded animate-pulse" />
                     }
                   >
-                    <GoogleTranslate2 />
+                    <GoogleTranslate />
                   </Suspense>
                 </div>
 
