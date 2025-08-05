@@ -8,21 +8,21 @@ const testimonials = [
   {
     name: "Sarah Johnson",
     role: "Screenwriter",
-    avatar: "/placeholder.svg?height=40&width=40",
+    avatar: "/i1.svg?height=40&width=40",
     content: "ScriptCraft transformed my writing process! The AI suggestions are incredibly insightful. 🎬✨",
     rating: 5,
   },
   {
     name: "Michael Chen",
     role: "Film Director",
-    avatar: "/placeholder.svg?height=40&width=40",
+    avatar: "/i2.svg?height=40&width=40",
     content: "The dialogue enhancement feature is a game-changer. My scripts feel more authentic now! 🎭",
     rating: 5,
   },
   {
     name: "Emma Rodriguez",
     role: "TV Writer",
-    avatar: "/placeholder.svg?height=40&width=40",
+    avatar: "/i3.svg?height=40&width=40",
     content: "Love the character consistency checker. It's like having a writing mentor 24/7! 📝💡",
     rating: 5,
   },
@@ -53,7 +53,7 @@ export function TestimonialsSection() {
               <p className="text-sm mb-4 italic">"{testimonial.content}"</p>
               <div className="flex items-center space-x-3">
                 <Avatar>
-                  <AvatarImage src={testimonial.avatar || "/placeholder.svg"} />
+                  <AvatarImage src={testimonial.avatar || "/i1.svg"} />
                   <AvatarFallback>
                     {testimonial.name
                       .split(" ")

@@ -6,6 +6,7 @@ import { CTASection } from "@/components/cta-section"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Galaxy from "@/components/Galaxy"
+import CurvedLoop from "@/components/CurvedLoop"
 // import Galaxy from './Galaxy';
 
 export default function HomePage() {
@@ -25,6 +26,15 @@ export default function HomePage() {
         />
         </div> */}
         <HeroSection />
+        <CurvedLoop
+          marqueeText="Frame ✦ Your ✦ Story ✦ With ✦ Script ✦ Craft ✦"
+          speed={2}
+          curveAmount={500}
+          direction="right"
+          interactive={true}
+          className="custom-text-style"
+        />
+
         <FeatureGrid />
         <StatsSection />
         <TestimonialsSection />

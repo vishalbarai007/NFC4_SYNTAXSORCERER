@@ -17,8 +17,8 @@ export function HeroSection() {
         />
       </h1>
 
-      <h1 className="fixed right-[5vw] text-center text-3xl font-extrabold border-[#EAB308] text-[#1E3A8A] tracking-tight hover:text-[#0D9488] sm:text-6xl md:text-2xl">
-        s<br />y<br />n<br />t<br />a<br />x<br /> <br />s<br />o<br />r<br />c<br />e<br />r<br />e<br />r
+      <h1 className="fixed right-[5vw] text-center text-4xl font-light border-[#EAB308] text-[#1E3A8A] tracking-tight hover:text-[#0D9488] sm:text-6xl md:text-2xl">
+        .<br/>|<br/>s<br />y<br />n<br />t<br />a<br />x<br /> <br />s<br />o<br />r<br />c<br />e<br />r<br />e<br />r<br/>|<br/>.
       </h1>
       <div className="mx-auto max-w-4xl text-center grid grid-cols-2 gap-10 ">
         <div>
