@@ -1,10 +1,10 @@
-// import { HeroSection } from "@/components/hero-section"
-// import { FeatureGrid } from "@/components/feature-grid"
-// import { TestimonialsSection } from "@/components/testimonials-section"
-// import { StatsSection } from "@/components/stats-section"
-// import { CTASection } from "@/components/cta-section"
-// import { Navigation } from "@/components/navigation"
-// import { Footer } from "@/components/footer"
+import { HeroSection } from "@/components/hero-section"
+import { FeatureGrid } from "@/components/feature-grid"
+import { TestimonialsSection } from "@/components/testimonials-section"
+import { StatsSection } from "@/components/stats-section"
+import { CTASection } from "@/components/cta-section"
+import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
 
 export default function HomePage() {
   return (
@@ -19,5 +19,5 @@ export default function HomePage() {
       </main>
       <Footer />
     </div>
-  );
+  )
 }
