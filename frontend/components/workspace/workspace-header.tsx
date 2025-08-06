@@ -52,7 +52,7 @@ export function WorkspaceHeader({ scriptId, onCompareToggle, compareMode }: Work
           </Button>
           <Separator orientation="vertical" className="h-6" />
           <div className="flex items-center space-x-2">
-            <h1 className="text-lg font-semibold">The Last Stand</h1>
+            {/* <h1 className="text-lg font-semibold">The Last Stand</h1> */}
             <Badge
               variant="secondary"
               className="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20"
