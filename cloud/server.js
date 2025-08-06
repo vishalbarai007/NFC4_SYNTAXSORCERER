@@ -5,6 +5,7 @@ import cors from "cors";
 import path from "path";
 import { exec } from "child_process";
 import mammoth from "mammoth";
+import crypto from "crypto";
 
 const app = express();
 const PORT = 5000;
@@ -17,6 +18,12 @@ app.use(express.json());
 const uploadDir = path.join(process.cwd(), "uploads");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
+}
+
+// Create metadata directory for storing script mappings
+const metadataDir = path.join(process.cwd(), "metadata");
+if (!fs.existsSync(metadataDir)) {
+  fs.mkdirSync(metadataDir);
 }
 
 // Multer storage configuration with consistent naming
@@ -48,6 +55,62 @@ const upload = multer({
     }
   }
 });
+
+// Helper: Generate unique script ID
+function generateScriptId() {
+  return crypto.randomUUID();
+}
+
+// Helper: Save script metadata
+function saveScriptMetadata(scriptId, metadata) {
+  const metadataFile = path.join(metadataDir, `${scriptId}.json`);
+  fs.writeFileSync(metadataFile, JSON.stringify(metadata, null, 2));
+}
+
+// Helper: Load script metadata
+function loadScriptMetadata(scriptId) {
+  const metadataFile = path.join(metadataDir, `${scriptId}.json`);
+  if (!fs.existsSync(metadataFile)) {
+    return null;
+  }
+  try {
+    const data = fs.readFileSync(metadataFile, 'utf-8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Error loading metadata:', error);
+    return null;
+  }
+}
+
+// Helper: Get user metadata files
+function getUserScripts(userId) {
+  if (!fs.existsSync(metadataDir)) {
+    return [];
+  }
+  
+  const metadataFiles = fs.readdirSync(metadataDir)
+    .filter(file => file.endsWith('.json'));
+  
+  const userScripts = [];
+  
+  for (const file of metadataFiles) {
+    try {
+      const scriptId = path.basename(file, '.json');
+      const metadata = loadScriptMetadata(scriptId);
+      
+      if (metadata && metadata.userId === userId) {
+        userScripts.push({
+          scriptId,
+          ...metadata
+        });
+      }
+    } catch (error) {
+      console.error(`Error reading metadata file ${file}:`, error);
+    }
+  }
+  
+  return userScripts.sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+}
 
 // Helper: Extract text from PDF using system command (pdftotext)
 async function extractTextFromPDF(filePath) {
@@ -94,26 +157,6 @@ async function extractTextFromFile(filePath, ext) {
   }
 }
 
-// Helper: Parse filename to get components
-function parseFilename(filename) {
-  // Format: userId-timestamp-originalname
-  const parts = filename.split('-');
-  if (parts.length < 3) {
-    return null;
-  }
-  
-  const userId = parts[0];
-  const timestamp = parts[1];
-  const originalName = parts.slice(2).join('-'); // Rejoin in case original name had dashes
-  
-  return {
-    userId,
-    timestamp: parseInt(timestamp),
-    originalName,
-    uploadedAt: new Date(parseInt(timestamp))
-  };
-}
-
 // Upload and convert file
 app.post("/upload", upload.single("file"), async (req, res) => {
   try {
@@ -133,13 +176,13 @@ app.post("/upload", upload.single("file"), async (req, res) => {
       });
     }
 
+    // Generate unique script ID
+    const scriptId = generateScriptId();
+    
     // Get the temporary filename and create proper filename
     const tempFilePath = req.file.path;
-    const tempFileName = req.file.filename;
-    
-    // Create proper filename: userId-timestamp-originalname
     const timestamp = Date.now();
-    const properFileName = `${userId}-${timestamp}-${req.file.originalname}`;
+    const properFileName = `${userId}-${scriptId}-${req.file.originalname}`;
     const properFilePath = path.join(uploadDir, properFileName);
     
     // Rename the temp file to proper name
@@ -147,25 +190,46 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     
     const ext = path.extname(req.file.originalname).toLowerCase().substring(1);
 
-    console.log(`Processing file: ${properFileName}, type: ${ext}`);
+    console.log(`Processing file: ${properFileName}, script ID: ${scriptId}, type: ${ext}`);
 
     // Extract text content
     const extractedText = await extractTextFromFile(properFilePath, ext);
 
-    // Create text file with consistent naming
-    const textFileName = `${properFileName}.txt`;
+    // Create text file with script ID
+    const textFileName = `${scriptId}.txt`;
     const textFilePath = path.join(uploadDir, textFileName);
     
     fs.writeFileSync(textFilePath, extractedText);
 
+    // Save metadata
+    const metadata = {
+      userId,
+      scriptId,
+      originalName: req.file.originalname,
+      fileName: properFileName,
+      textFileName,
+      filePath: properFilePath,
+      textFilePath,
+      uploadedAt: new Date(timestamp).toISOString(),
+      size: req.file.size,
+      fileType: ext,
+      extractedLength: extractedText.length,
+      hasTextExtraction: true
+    };
+
+    saveScriptMetadata(scriptId, metadata);
+
     console.log(`✅ File processed successfully: ${properFileName}`);
     console.log(`✅ Text extracted and saved: ${textFileName}`);
+    console.log(`✅ Script ID generated: ${scriptId}`);
 
     return res.status(200).json({
       success: true,
       message: "File uploaded and converted successfully",
       data: {
+        scriptId,
         originalFile: {
+          scriptId,
           filename: properFileName,
           originalName: req.file.originalname,
           path: `/uploads/${properFileName}`,
@@ -194,61 +258,40 @@ app.post("/upload", upload.single("file"), async (req, res) => {
   }
 });
 
-// Fetch all user files with consistent parsing
+// Fetch all user files using script metadata
 app.get("/files/:userId", (req, res) => {
   const { userId } = req.params;
 
   try {
-    if (!fs.existsSync(uploadDir)) {
-      return res.status(200).json({
-        success: true,
-        files: []
-      });
-    }
-
-    const allFiles = fs.readdirSync(uploadDir);
+    const userScripts = getUserScripts(userId);
     
-    // Filter files that belong to this user and are not text files
-    const userFiles = allFiles
-      .filter(file => {
-        // Must start with userId- and not end with .txt
-        return file.startsWith(`${userId}-`) && !file.endsWith('.txt');
-      })
-      .map(file => {
-        const parsed = parseFilename(file);
-        if (!parsed) {
-          return null; // Skip malformed filenames
-        }
+    // Format response to match expected structure
+    const files = userScripts.map(script => {
+      // Check if files still exist
+      const originalExists = fs.existsSync(script.filePath);
+      const textExists = fs.existsSync(script.textFilePath);
+      
+      return {
+        id: script.scriptId,
+        scriptId: script.scriptId,
+        fileName: script.fileName,
+        originalName: script.originalName,
+        filePath: originalExists ? `/uploads/${script.fileName}` : null,
+        textFilePath: textExists ? `/uploads/${script.textFileName}` : null,
+        uploadedAt: script.uploadedAt,
+        size: script.size,
+        fileType: script.fileType,
+        hasTextExtraction: textExists,
+        extractedLength: script.extractedLength
+      };
+    });
 
-        // Check if corresponding text file exists
-        const textFileName = `${file}.txt`;
-        const textFilePath = path.join(uploadDir, textFileName);
-        const hasTextFile = fs.existsSync(textFilePath);
-
-        // Get file stats
-        const filePath = path.join(uploadDir, file);
-        const stats = fs.statSync(filePath);
-
-        return {
-          id: file, // Use filename as ID
-          fileName: file,
-          originalName: parsed.originalName,
-          filePath: `/uploads/${file}`,
-          textFilePath: hasTextFile ? `/uploads/${textFileName}` : null,
-          uploadedAt: parsed.uploadedAt.toISOString(),
-          size: stats.size,
-          hasTextExtraction: hasTextFile
-        };
-      })
-      .filter(file => file !== null) // Remove malformed entries
-      .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt)); // Sort by newest first
-
-    console.log(`📂 Found ${userFiles.length} files for user ${userId}`);
+    console.log(`📂 Found ${files.length} files for user ${userId}`);
 
     return res.status(200).json({
       success: true,
-      count: userFiles.length,
-      files: userFiles
+      count: files.length,
+      files: files
     });
 
   } catch (error) {
@@ -260,21 +303,30 @@ app.get("/files/:userId", (req, res) => {
   }
 });
 
-// Get extracted text content
-app.get("/text/:userId/:filename", (req, res) => {
-  const { userId, filename } = req.params;
+// Get extracted text content by script ID
+app.get("/text/:userId/:scriptId", (req, res) => {
+  const { userId, scriptId } = req.params;
   
   try {
-    // Security check: ensure the file belongs to the user
-    if (!filename.startsWith(`${userId}-`)) {
+    // Load metadata to verify ownership and get file info
+    const metadata = loadScriptMetadata(scriptId);
+    
+    if (!metadata) {
+      return res.status(404).json({
+        success: false,
+        message: "Script not found"
+      });
+    }
+    
+    // Security check: ensure the script belongs to the user
+    if (metadata.userId !== userId) {
       return res.status(403).json({
         success: false,
         message: "Unauthorized access"
       });
     }
 
-    const textFileName = `${filename}.txt`;
-    const textFilePath = path.join(uploadDir, textFileName);
+    const textFilePath = path.join(uploadDir, metadata.textFileName);
     
     if (!fs.existsSync(textFilePath)) {
       return res.status(404).json({
@@ -287,9 +339,12 @@ app.get("/text/:userId/:filename", (req, res) => {
     
     return res.status(200).json({
       success: true,
-      filename: textFileName,
+      scriptId: scriptId,
+      originalName: metadata.originalName,
+      filename: metadata.textFileName,
       content: textContent,
-      length: textContent.length
+      length: textContent.length,
+      uploadedAt: metadata.uploadedAt
     });
 
   } catch (error) {
@@ -301,48 +356,57 @@ app.get("/text/:userId/:filename", (req, res) => {
   }
 });
 
-// Delete file endpoint
-app.delete("/files/:userId/:filename", (req, res) => {
-  const { userId, filename } = req.params;
+// Delete file by script ID
+app.delete("/files/:userId/:scriptId", (req, res) => {
+  const { userId, scriptId } = req.params;
   
   try {
-    // Security check: ensure the file belongs to the user
-    if (!filename.startsWith(`${userId}-`)) {
+    // Load metadata to verify ownership and get file paths
+    const metadata = loadScriptMetadata(scriptId);
+    
+    if (!metadata) {
+      return res.status(404).json({
+        success: false,
+        message: "Script not found"
+      });
+    }
+    
+    // Security check: ensure the script belongs to the user
+    if (metadata.userId !== userId) {
       return res.status(403).json({
         success: false,
         message: "Unauthorized access"
       });
     }
 
-    const filePath = path.join(uploadDir, filename);
-    const textFileName = `${filename}.txt`;
-    const textFilePath = path.join(uploadDir, textFileName);
-    
     let deletedFiles = [];
     
     // Delete original file
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
-      deletedFiles.push(filename);
+    if (fs.existsSync(metadata.filePath)) {
+      fs.unlinkSync(metadata.filePath);
+      deletedFiles.push(metadata.fileName);
     }
     
     // Delete text file
-    if (fs.existsSync(textFilePath)) {
-      fs.unlinkSync(textFilePath);
-      deletedFiles.push(textFileName);
+    if (fs.existsSync(metadata.textFilePath)) {
+      fs.unlinkSync(metadata.textFilePath);
+      deletedFiles.push(metadata.textFileName);
     }
     
-    if (deletedFiles.length === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "File not found"
-      });
+    // Delete metadata file
+    const metadataFile = path.join(metadataDir, `${scriptId}.json`);
+    if (fs.existsSync(metadataFile)) {
+      fs.unlinkSync(metadataFile);
+      deletedFiles.push(`${scriptId}.json`);
     }
+    
+    console.log(`🗑️ Deleted script ${scriptId} and associated files`);
     
     return res.status(200).json({
       success: true,
-      message: "Files deleted successfully",
-      deletedFiles
+      message: "Script and files deleted successfully",
+      scriptId: scriptId,
+      deletedFiles: deletedFiles
     });
 
   } catch (error) {
@@ -357,29 +421,57 @@ app.delete("/files/:userId/:filename", (req, res) => {
 // Serve static files from uploads folder
 app.use("/uploads", express.static(uploadDir));
 
-// Cleanup malformed files (files with undefined userId)
+// Cleanup malformed files and orphaned metadata
 app.delete("/cleanup", (req, res) => {
   try {
+    let deletedCount = 0;
+    const deletedFiles = [];
+    
+    // Clean up malformed upload files
     const allFiles = fs.readdirSync(uploadDir);
     const malformedFiles = allFiles.filter(file => 
       file.startsWith('undefined-') || file.startsWith('temp-')
     );
-    
-    let deletedCount = 0;
     
     malformedFiles.forEach(file => {
       const filePath = path.join(uploadDir, file);
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
         deletedCount++;
+        deletedFiles.push(file);
         console.log(`🗑️ Deleted malformed file: ${file}`);
       }
     });
     
+    // Clean up orphaned metadata (metadata without corresponding files)
+    if (fs.existsSync(metadataDir)) {
+      const metadataFiles = fs.readdirSync(metadataDir);
+      
+      for (const metaFile of metadataFiles) {
+        if (!metaFile.endsWith('.json')) continue;
+        
+        try {
+          const scriptId = path.basename(metaFile, '.json');
+          const metadata = loadScriptMetadata(scriptId);
+          
+          if (metadata && (!fs.existsSync(metadata.filePath) || !fs.existsSync(metadata.textFilePath))) {
+            const metadataPath = path.join(metadataDir, metaFile);
+            fs.unlinkSync(metadataPath);
+            deletedCount++;
+            deletedFiles.push(metaFile);
+            console.log(`🗑️ Deleted orphaned metadata: ${metaFile}`);
+          }
+        } catch (error) {
+          console.error(`Error processing metadata file ${metaFile}:`, error);
+        }
+      }
+    }
+    
     return res.status(200).json({
       success: true,
-      message: `Cleaned up ${deletedCount} malformed files`,
-      deletedFiles: malformedFiles
+      message: `Cleaned up ${deletedCount} files`,
+      deletedCount: deletedCount,
+      deletedFiles: deletedFiles
     });
     
   } catch (error) {
@@ -387,6 +479,34 @@ app.delete("/cleanup", (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Failed to cleanup files"
+    });
+  }
+});
+
+// Get script metadata by script ID (for debugging)
+app.get("/metadata/:scriptId", (req, res) => {
+  const { scriptId } = req.params;
+  
+  try {
+    const metadata = loadScriptMetadata(scriptId);
+    
+    if (!metadata) {
+      return res.status(404).json({
+        success: false,
+        message: "Script metadata not found"
+      });
+    }
+    
+    return res.status(200).json({
+      success: true,
+      metadata: metadata
+    });
+    
+  } catch (error) {
+    console.error("Error fetching metadata:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch metadata"
     });
   }
 });
@@ -413,4 +533,5 @@ app.use((error, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
   console.log(`📁 Upload directory: ${uploadDir}`);
+  console.log(`📋 Metadata directory: ${metadataDir}`);
 });
