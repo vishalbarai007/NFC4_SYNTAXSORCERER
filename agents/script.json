@@ -1,0 +1,181 @@
+{
+    "parsed_scenes": [
+        {
+            "scene": "INT.  WILL'S BEDROOM - NIGHT (1973)",
+            "actions": [
+                "WILL BLOOM, AGE 3, listens wide-eyed as his father EDWARD BLOOM, 40's and handsome, tells the story.  In every gesture, Edward is bigger than life, describing each detail with absolute conviction.",
+                "(closer)",
+                "And on the day you were born, that was the day I finally caught him."
+            ],
+            "dialogues": [
+                {
+                    "character": "EDWARD",
+                    "line": "I didn't put any stock into such speculation or superstition.  All I knew was I'd been trying to catch that fish since I was a boy no bigger than you."
+                }
+            ]
+        },
+        {
+            "scene": "EXT.  CAMPFIRE - NIGHT (1977)",
+            "actions": [
+                "A few years later, and Will sits with the other INDIAN GUIDES as Edward continues telling the story to the tribe.",
+                "Edward points to his wedding band, glinting in the firelight.",
+                "Your finger?",
+                "Edward slips his ring off.",
+                "While the other boys are rapt with attention, Will looks bored.  He's heard this story before."
+            ],
+            "dialogues": [
+                {
+                    "character": "EDWARD",
+                    "line": "Now, I'd tried everything on it:  worms, lures, peanut butter, peanut butter-and-cheese.  But on that day I had a revelation:  if that fish was the ghost of a thief, the usual bait wasn't going to work.  I would have to use something he truly desired."
+                },
+                {
+                    "character": "LITTLE BRAVE",
+                    "line": "(confused)"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Gold."
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "I tied my ring to the strongest line they made -- strong enough to hold up a bridge, they said, if just for a few minutes -- and I cast upriver."
+                }
+            ]
+        },
+        {
+            "scene": "INT.  BLOOM FRONT HALL - NIGHT (1987)",
+            "actions": [
+                "Edward is chatting up Will's pretty DATE to the homecoming dance.  She is enjoying the story, but also the force of Edward's charisma.  He's hypnotizing.",
+                "WILL, now 17 with braces, is fuming and ready to leave.  His mother SANDRA -- from whom he gets his good looks and practicality -- stands with him at the door.",
+                "Make him stop.",
+                "His mother pats him sympathetically, then adjusts his tie.",
+                "Will regards his father with exasperated contempt."
+            ],
+            "dialogues": [
+                {
+                    "character": "EDWARD (CONT'D)",
+                    "line": "The Beast jumped up and grabbed it before the ring even hit the water.  And just as fast, he snapped clean through that line."
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "You can see my predicament.  My wedding ring, the symbol of fidelity to my wife, soon to be the mother of my child, was now lost in the gut of an uncatchable fish."
+                },
+                {
+                    "character": "WILL",
+                    "line": "(low but insistent)"
+                },
+                {
+                    "character": "WILL'S DATE",
+                    "line": "What did you do?"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "I followed that fish up-river and down-river for three days and three nights, until I finally had him boxed in."
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "With these two hands, I reached in and snatched that fish out of the river.  I looked him straight in the eye.  And I made a remarkable discovery."
+                }
+            ]
+        },
+        {
+            "scene": "INT.  TINY PARIS RESTAURANT (LA RUE 14Â°) - NIGHT (1998)",
+            "actions": [
+                "WILL, now 28, sits with his gorgeous bride JOSEPHINE.  This is their wedding reception, crowded with their friends and family.  They should be joyful, but Will is furious.",
+                "Edward has the floor, ostensibly for a toast.  The room is cozy and drunk.",
+                "Over near the doorway, we spot Sandra, just returned from the restrooms.  She looks gorgeous.  She couldn't be any happier if this were her own wedding.",
+                "Will can't take any more.  Josephine tries to hold him back, but he gets up and leaves.  Edward doesn't even notice.",
+                "As he leaves, Will mutters in perfect unison with his father--",
+                "Will reaches the door, where his mother intercepts him.",
+                "Will can't articulate his anger.  He just leaves.",
+                "(closer; he holds up his ring)",
+                "That was the lesson I learned that day, the day my son was born.",
+                "He focuses his words on Sandra.  This story is -- and has always been -- about her more than anyone.",
+                "A LAUGH from the crowd.",
+                "Edward motions for Sandra to get up here with him.  As she crosses, we can see that thirty years of marriage has not lessened their affection for each other.",
+                "As they kiss, Edward tweaks her chin a special little way.  The crowd APPLAUDS.",
+                "Edward toasts the happy couple.  Josephine covers well for her absent husband, a smile as warm as summer.",
+                "Edward downs his champagne in a gulp."
+            ],
+            "dialogues": [
+                {
+                    "character": "EDWARD",
+                    "line": "This fish, the Beast.  The whole time we were calling it a him, when in fact it was a her.  It was fat with eggs, and was going to lay them any day."
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Now, I was in a situation.  I could gut that fish and get my ring back, but doing so I would be killing the smartest catfish in the Ashton River, soon to be mother of a hundred others."
+                },
+                {
+                    "character": "EDWARD (CONT'D)",
+                    "line": "Did I want to deprive my soon-to-be-born son the chance to catch a fish like this of his own?  This lady fish and I, well, we had the same destiny."
+                },
+                {
+                    "character": "EDWARD AND WILL",
+                    "line": "We were part of the same equation."
+                },
+                {
+                    "character": "SANDRA",
+                    "line": "Honey, it's still your night."
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Now, you may well ask, since this lady fish wasn't the ghost of a thief, why did it strike so quick on gold when nothing else would attract it?"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Sometimes, the only way to catch an uncatchable woman is to offer her a wedding ring."
+                }
+            ]
+        },
+        {
+            "scene": "EXT.  OUTSIDE LA RUE 14Â° - NIGHT",
+            "actions": [
+                "We come into the middle of an argument on the sidewalk.  Occasional PASSERSBY take notice, especially as it gets more heated.  Both men are a little drunk.",
+                "I am a footnote in that story.  I am the context for your great adventure.  Which never happened!  Incidentally!  You were selling novelty products in Wichita the day I was born.",
+                "Jesus Christ.",
+                "(closer)",
+                "For one night, one night in your entire life, the universe does not revolve around Edward Bloom.  It revolves around me and my wife.  How can you not understand that?",
+                "A long beat, then...",
+                "Sorry to embarrass you.",
+                "Will won't let him get the last word.",
+                "ANGLE ON Edward.  Fine.  A hand to wave, enough of you.",
+                "He walks away."
+            ],
+            "dialogues": [
+                {
+                    "character": "EDWARD",
+                    "line": "What, a father's not allowed to talk about his son?"
+                },
+                {
+                    "character": "WILL",
+                    "line": "(disbelieving)"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "(shaking his head)"
+                },
+                {
+                    "character": "WILL",
+                    "line": "Friend of yours?  Did you help him out of a bind?"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Come on, Will.  Everyone likes that story."
+                },
+                {
+                    "character": "WILL",
+                    "line": "No Dad, they don't.  _I_ do not like the story.  Not anymore, not after a _thousand_ _times_.  I know all the punchlines, Dad.  I can tell them as well as you can."
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "(low)"
+                },
+                {
+                    "character": "WILL",
+                    "line": "You're embarrassing yourself, Dad.  You just don't see it."
+                }
+            ]
+        }
+    ]
+}

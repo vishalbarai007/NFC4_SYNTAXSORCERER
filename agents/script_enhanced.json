@@ -1,0 +1,546 @@
+{
+    "parsed_scenes": [
+        {
+            "scene": "PRE-SCENE",
+            "actions": [
+                "We're underwater, watching a fat catfish swim along.",
+                "This is The Beast.",
+                "The Beast's journey takes it past a dangling fish hook, baited with worms.  Past a tempting lure, sparkling in the sun.  Past a swiping bear claw.  The Beast isn't worried."
+            ],
+            "dialogues": [
+                {
+                    "character": "EDWARD (V.O.)",
+                    "line": "There are some fish that cannot be caught.  It's not that they're faster or stronger than other fish.  They're just touched by something extra.  Call it luck.  Call it grace.  One such fish was The Beast.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.592
+                    },
+
+                    "enhanced_line": "Some fish, you see, simply defy the hook. Not because they possess the mightiest tail or the swiftest dart, but because they’re touched by something... *more*. A sprinkle of pure luck, perhaps, or a breath of divine grace. One such glorious creature was The Beast.",
+                    "tone_label": "joy"
+                },
+                {
+                    "character": "EDWARD (V.O.)(CONT'D)",
+                    "line": "By the time I was born, he was already a legend.  He'd taken more hundred-dollar lures than any fish in Alabama. Some said that fish was the ghost of Henry Walls, a thief who'd drowned in that river 60 years before.   Others claimed he was a lesser dinosaur, left over from the Cretaceous period.",
+                    "tone": {
+                        "label": "fear",
+                        "confidence": 0.709
+                    },
+                    "enhanced_line": "Even before my first breath, he was a living myth, a shadow whispered across the water. He'd swallowed fortunes in hundred-dollar lures, leaving anglers with nothing but shattered hopes. Some swore he was the spectral echo of Henry Walls, a thief whose breath had stopped in those dark waters six decades past. Others whispered he was a monstrous remnant, a creature of scale and tooth from the primeval Cretaceous depths.",
+                    "tone_label": "fear"
+                }
+            ]
+        },
+        {
+            "scene": "INT.  WILL'S BEDROOM - NIGHT (1973)",
+            "actions": [
+                "WILL BLOOM, AGE 3, listens wide-eyed as his father EDWARD BLOOM, 40's and handsome, tells the story.  In every gesture, Edward is bigger than life, describing each detail with absolute conviction."
+            ],
+            "dialogues": [
+                {
+                    "character": "EDWARD",
+                    "line": "I didn't put any stock into such speculation or superstition.  All I knew was I'd been trying to catch that fish since I was a boy no bigger than you.",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.561
+                    },
+                    "enhanced_line": "I never bought into an ounce of that speculation or superstition. All I cared about was that fish – I'd been trying to land that very one since I was a boy, no bigger than your shadow.",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "(closer)",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.422
+                    },
+                    "enhanced_line": "Now listen.",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "And on the day you were born, that was the day I finally caught him.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.415
+                    },
+                    "enhanced_line": "And wouldn't you know it? The very day you came into this world, that's the day I finally hauled that monster in.",
+                    "tone_label": "joy"
+                }
+            ]
+        },
+        {
+            "scene": "EXT.  CAMPFIRE - NIGHT (1977)",
+            "actions": [
+                "A few years later, and Will sits with the other INDIAN GUIDES as Edward continues telling the story to the tribe.",
+                "Edward points to his wedding band, glinting in the firelight.",
+                "Edward slips his ring off.",
+                "While the other boys are rapt with attention, Will looks bored.  He's heard this story before."
+            ],
+            "dialogues": [
+                {
+                    "character": "EDWARD",
+                    "line": "Now, I'd tried everything on it:  worms, lures, peanut butter, peanut butter-and-cheese.  But on that day I had a revelation:  if that fish was the ghost of a thief, the usual bait wasn't going to work.  I would have to use something he truly desired.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.708
+                    },
+                    "enhanced_line": "Oh, I'd tried *everything* on him: fat worms, shiny lures, even my secret peanut butter concoctions – sometimes with cheese! But on that fateful day, a revelation struck me like a sunbeam through the clouds: if that fish truly was the ghost of a thief, ordinary bait wasn't just *not* going to work, it was an insult! I had to use something he truly, deeply craved.",
+                    "tone_label": "joy"
+                },
+                {
+                    "character": "LITTLE BRAVE",
+                    "line": "(confused)",
+                    "tone": {
+                        "label": "fear",
+                        "confidence": 0.938
+                    },
+                    "enhanced_line": "(A hesitant, almost frightened whisper) Wh-what...?",
+                    "tone_label": "fear"
+                },
+                {
+                    "character": "LITTLE BRAVE",
+                    "line": "Your finger?",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.462
+                    },
+                    "enhanced_line": "Your... your *finger*?!",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Gold.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.687
+                    },
+                    "enhanced_line": "Gold, my boy. Pure, irresistible gold!",
+                    "tone_label": "joy"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "I tied my ring to the strongest line they made -- strong enough to hold up a bridge, they said, if just for a few minutes -- and I cast upriver.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.641
+                    },
+                    "enhanced_line": "I took my wedding band, my precious ring, and bound it tight to the thickest, most unyielding line they had – a line so stout, they swore it could momentarily tether a collapsing bridge! Then, with a heart pounding with thrilling anticipation, I cast it far, directly upriver.",
+                    "tone_label": "joy"
+                }
+            ]
+        },
+        {
+            "scene": "INT.  BLOOM FRONT HALL - NIGHT (1987)",
+            "actions": [
+                "Edward is chatting up Will's pretty DATE to the homecoming dance.  She is enjoying the story, but also the force of Edward's charisma.  He's hypnotizing.",
+                "WILL, now 17 with braces, is fuming and ready to leave.  His mother SANDRA -- from whom he gets his good looks and practicality -- stands with him at the door.",
+                "His mother pats him sympathetically, then adjusts his tie.",
+                "Will regards his father with exasperated contempt."
+            ],
+            "dialogues": [
+                {
+                    "character": "EDWARD (CONT'D)",
+                    "line": "The Beast jumped up and grabbed it before the ring even hit the water.  And just as fast, he snapped clean through that line.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.812
+                    },
+                    "enhanced_line": "The Beast rocketed from the depths, snatching it mid-air before the ring even kissed the surface. And in a blink, with a mighty crunch, he cleanly bit through that line.",
+                    "tone_label": "joy"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "You can see my predicament.  My wedding ring, the symbol of fidelity to my wife, soon to be the mother of my child, was now lost in the gut of an uncatchable fish.",
+                    "tone": {
+                        "label": "sadness",
+                        "confidence": 0.975
+                    },
+                    "enhanced_line": "Picture my despair. My wedding ring, the very emblem of my unwavering fidelity to my wife – soon to bear my child – was now hopelessly swallowed in the belly of a fish no net could ever snare.",
+                    "tone_label": "sadness"
+                },
+                {
+                    "character": "WILL",
+                    "line": "(low but insistent)",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.744
+                    },
+                    "enhanced_line": "(A simmering growl, barely audible but full of sharp insistence.)",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "WILL",
+                    "line": "Make him stop.",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.8
+                    },
+                    "enhanced_line": "Silence him! Now!",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "WILL'S DATE",
+                    "line": "What did you do?",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.792
+                    },
+                    "enhanced_line": "What in the blazes did you *do*?!",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "I followed that fish up-river and down-river for three days and three nights, until I finally had him boxed in.",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.274
+                    },
+                    "enhanced_line": "I *dogged* that fish, that slippery devil, up-river and down-river for three sun-scorched days and three bone-chilling nights, never letting him out of my sight until I finally had him trapped, nowhere left to run.",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "With these two hands, I reached in and snatched that fish out of the river.  I looked him straight in the eye.  And I made a remarkable discovery.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.944
+                    },
+                    "enhanced_line": "With these two bare hands, I plunged into the churning water, wrapped my fingers around him, and *snatched* that magnificent creature clear of the river. I held him up, staring straight into his ancient eyes. And in that electric moment, I made an astonishing, world-changing discovery.",
+                    "tone_label": "joy"
+                }
+            ]
+        },
+        {
+            "scene": "INT.  TINY PARIS RESTAURANT (LA RUE 14Â°) - NIGHT (1998)",
+            "actions": [
+                "WILL, now 28, sits with his gorgeous bride JOSEPHINE.  This is their wedding reception, crowded with their friends and family.  They should be joyful, but Will is furious.",
+                "Edward has the floor, ostensibly for a toast.  The room is cozy and drunk.",
+                "Over near the doorway, we spot Sandra, just returned from the restrooms.  She looks gorgeous.  She couldn't be any happier if this were her own wedding.",
+                "Will can't take any more.  Josephine tries to hold him back, but he gets up and leaves.  Edward doesn't even notice.",
+                "As he leaves, Will mutters in perfect unison with his father--",
+                "Will reaches the door, where his mother intercepts him.",
+                "Will can't articulate his anger.  He just leaves.",
+                "He focuses his words on Sandra.  This story is -- and has always been -- about her more than anyone.",
+                "A LAUGH from the crowd.",
+                "Edward motions for Sandra to get up here with him.  As she crosses, we can see that thirty years of marriage has not lessened their affection for each other.",
+                "As they kiss, Edward tweaks her chin a special little way.  The crowd APPLAUDS.",
+                "Edward toasts the happy couple.  Josephine covers well for her absent husband, a smile as warm as summer.",
+                "Edward downs his champagne in a gulp."
+            ],
+            "dialogues": [
+                {
+                    "character": "EDWARD",
+                    "line": "This fish, the Beast.  The whole time we were calling it a him, when in fact it was a her.  It was fat with eggs, and was going to lay them any day.",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.839
+                    },
+                    "enhanced_line": "That Beast of a fish! We'd been calling it 'him' this whole time, only to find out it was a *her*. Bloated with eggs, ready to burst and lay them any day now.",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Now, I was in a situation.  I could gut that fish and get my ring back, but doing so I would be killing the smartest catfish in the Ashton River, soon to be mother of a hundred others.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.953
+                    },
+                    "enhanced_line": "Well, now, here I was, truly stuck. I could, absolutely, gut that fish and snatch my ring back. But doing so would mean ending the life of the Ashton River's smartest catfish, a soon-to-be mother to a hundred, easily.",
+                    "tone_label": "joy"
+                },
+                {
+                    "character": "EDWARD (CONT'D)",
+                    "line": "Did I want to deprive my soon-to-be-born son the chance to catch a fish like this of his own?  This lady fish and I, well, we had the same destiny.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.782
+                    },
+                    "enhanced_line": "Could I truly rob my soon-to-be-born son of the sheer thrill of catching a fish just like this, a monster of his own? No, this magnificent lady fish and I, our destinies were undeniably intertwined.",
+                    "tone_label": "joy"
+                },
+                {
+                    "character": "EDWARD AND WILL",
+                    "line": "We were part of the same equation.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.897
+                    },
+                    "enhanced_line": "We were, in the grand scheme of things, simply two vital components of the same, unfolding equation.",
+                    "tone_label": "joy"
+                },
+                {
+                    "character": "SANDRA",
+                    "line": "Honey, it's still your night.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.856
+                    },
+                    "enhanced_line": "Honey, darling, don't you fret. This night, it's still undeniably and completely yours.",
+                    "tone_label": "joy"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Now, you may well ask, since this lady fish wasn't the ghost of a thief, why did it strike so quick on gold when nothing else would attract it?",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.751
+                    },
+                    "enhanced_line": "Now, you may well ask, if this woman wasn't a phantom thief, then why did she *pounce* on that gold with such ferocious speed when not a single other thing could even stir her interest?",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "(closer; he holds up his ring)",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.495
+                    },
+                    "enhanced_line": "(He shoves the ring forward, thrusting it closer, his hand trembling slightly with the force of his anger.)",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "That was the lesson I learned that day, the day my son was born.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.946
+                    },
+                    "enhanced_line": "That was the profound truth that finally *blossomed* in my mind, that glorious day my son was welcomed into the world.",
+                    "tone_label": "joy"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Sometimes, the only way to catch an uncatchable woman is to offer her a wedding ring.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.791
+                    },
+                    "enhanced_line": "Sometimes, the only way to finally *tether* an untamed spirit, a woman beyond reach, is to extend the gleaming promise of a wedding ring.",
+                    "tone_label": "joy"
+                }
+            ]
+        },
+        {
+            "scene": "EXT.  OUTSIDE LA RUE 14Â° - NIGHT",
+            "actions": [
+                "We come into the middle of an argument on the sidewalk.  Occasional PASSERSBY take notice, especially as it gets more heated.  Both men are a little drunk.",
+                "A long beat, then...",
+                "Will won't let him get the last word.",
+                "ANGLE ON Edward.  Fine.  A hand to wave, enough of you.",
+                "He walks away.",
+                "ANGLE ON Will, still fuming with righteous anger.  It's then we FREEZE FRAME."
+            ],
+            "dialogues": [
+                {
+                    "character": "EDWARD",
+                    "line": "What, a father's not allowed to talk about his son?",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.799
+                    },
+                    "enhanced_line": "So, a father is suddenly *forbidden* to speak of his own son?",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "WILL",
+                    "line": "(disbelieving)",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.711
+                    },
+                    "enhanced_line": "(A scathing, disbelieving snort.)",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "WILL",
+                    "line": "I am a footnote in that story.  I am the context for your great adventure.  Which never happened!  Incidentally!  You were selling novelty products in Wichita the day I was born.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.962
+                    },
+                    "enhanced_line": "Oh, I'm just a forgotten footnote in that epic tale, aren't I? The flimsy 'context' for your *grand* adventure—which, incidentally, never actually happened! You were busy peddling rubber chickens in Wichita the day I came into the world.",
+                    "tone_label": "joy"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "(shaking his head)",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.594
+                    },
+                    "enhanced_line": "(He shakes his head slowly, a gesture steeped in weary, frustrated anger.)",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Jesus Christ.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.775
+                    },
+                    "enhanced_line": "By all that is holy, the sheer, breathtaking audacity!",
+                    "tone_label": "joy"
+                },
+                {
+                    "character": "WILL",
+                    "line": "Friend of yours?  Did you help him out of a bind?",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.856
+                    },
+                    "enhanced_line": "Friend of yours?  Did you help him out of a bind?",
+                    "tone_label": "neutral"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Come on, Will.  Everyone likes that story.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.609
+                    },
+                    "enhanced_line": "Come on, Will.  Everyone likes that story.",
+                    "tone_label": "neutral"
+                },
+                {
+                    "character": "WILL",
+                    "line": "No Dad, they don't.  _I_ do not like the story.  Not anymore, not after a _thousand_ _times_.  I know all the punchlines, Dad.  I can tell them as well as you can.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.929
+                    },
+                    "enhanced_line": "No Dad, they don't.  _I_ do not like the story.  Not anymore, not after a _thousand_ _times_.  I know all the punchlines, Dad.  I can tell them as well as you can.",
+                    "tone_label": "neutral"
+                },
+                {
+                    "character": "WILL",
+                    "line": "(closer)",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.422
+                    },
+                    "enhanced_line": "(closer)",
+                    "tone_label": "neutral"
+                },
+                {
+                    "character": "WILL",
+                    "line": "For one night, one night in your entire life, the universe does not revolve around Edward Bloom.  It revolves around me and my wife.  How can you not understand that?",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.886
+                    },
+                    "enhanced_line": "For one night, one night in your entire life, the universe does not revolve around Edward Bloom.  It revolves around me and my wife.  How can you not understand that?",
+                    "tone_label": "neutral"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "(low)",
+                    "tone": {
+                        "label": "sadness",
+                        "confidence": 0.526
+                    },
+                    "enhanced_line": "My voice felt trapped in my throat.",
+                    "tone_label": "sadness"
+                },
+                {
+                    "character": "EDWARD",
+                    "line": "Sorry to embarrass you.",
+                    "tone": {
+                        "label": "sadness",
+                        "confidence": 0.485
+                    },
+                    "enhanced_line": "I'm so terribly sorry to have dragged you into this embarrassment.",
+                    "tone_label": "sadness"
+                },
+                {
+                    "character": "WILL",
+                    "line": "You're embarrassing yourself, Dad.  You just don't see it.",
+                    "tone": {
+                        "label": "sadness",
+                        "confidence": 0.624
+                    },
+                    "enhanced_line": "Dad, you're not just embarrassing me, you're tearing yourself down, and the tragedy is, you're utterly blind to it.",
+                    "tone_label": "sadness"
+                },
+                {
+                    "character": "WILL (V.O.)(CONT'D)",
+                    "line": "After that night, I didn't speak to my father again for three years.",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.591
+                    },
+                    "enhanced_line": "That night, something broke irreversibly. Three years of an absolute, unforgiving silence followed, a silence fueled by a burning, unsaid anger.",
+                    "tone_label": "anger"
+                }
+            ]
+        },
+        {
+            "scene": "INT.  A.P. NEWSROOM (PARIS) - DAY",
+            "actions": [
+                "A typically busy day.  On hold with the phone cradled under an ear, Will sorts through a bundle of mail dropped on his desk.",
+                "He's put back on hold.  Returning to the mail, he finds a hand-addressed envelope.  Rips it open."
+            ],
+            "dialogues": [
+                {
+                    "character": "WILL (ON PHONE)",
+                    "line": "(without pauses)",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.553
+                    },
+                    "enhanced_line": "(without pauses)",
+                    "tone_label": "neutral"
+                },
+                {
+                    "character": "WILL (ON PHONE)",
+                    "line": "William Bloom with the Associated Press if I could just...",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.631
+                    },
+                    "enhanced_line": "William Bloom with the Associated Press if I could just...",
+                    "tone_label": "neutral"
+                },
+                {
+                    "character": "WILL (V.O.)(CONT'D)",
+                    "line": "We communicated indirectly I guess.  In her letters and Christmas cards, my mother would write for both of them.",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.488
+                    },
+                    "enhanced_line": "We communicated indirectly I guess.  In her letters and Christmas cards, my mother would write for both of them.",
+                    "tone_label": "neutral"
+                }
+            ]
+        },
+        {
+            "scene": "INT.  BLOOM HOUSE KITCHEN - DAY",
+            "actions": [
+                "At the table, Sandra talks on the phone while Edward fixes a sandwich.",
+                "Edward takes a seat, starting to eat his sandwich."
+            ],
+            "dialogues": [
+                {
+                    "character": "WILL (V.O.)",
+                    "line": "When I'd call, Mom would say that Dad was out driving.  Or swimming in the pool.",
+                    "tone": {
+                        "label": "anger",
+                        "confidence": 0.452
+                    },
+                    "enhanced_line": "Every time I called, Mom would trot out the same old excuses: Dad was 'out driving,' like he'd simply vanished into the asphalt. Or 'swimming in the pool,' as if he'd disappear beneath the surface.",
+                    "tone_label": "anger"
+                },
+                {
+                    "character": "WILL (V.O.) (CONT'D)",
+                    "line": "True to form, we never talked about our not talking.",
+                    "tone": {
+                        "label": "joy",
+                        "confidence": 0.596
+                    },
+                    "enhanced_line": "Right on cue, we perfected our most cherished family tradition: we never, *ever* talked about the fact that we weren't talking at all.",
+                    "tone_label": "joy"
+                }
+            ]
+        }
+    ]
+}
