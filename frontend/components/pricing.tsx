@@ -13,7 +13,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
   price, 
   features, 
   isPrimary = false,
-  buttonText = "Download"
+  buttonText = "BUY NOW"
 }) => {
   const cardClasses = isPrimary 
     ? "bg-gradient-to-br from-purple-600 to-blue-700 text-white border-transparent"
@@ -68,18 +68,18 @@ const PricingComponent = () => {
     {
       title: "Standard",
       price: "29",
-      features: ["15 Users", "Feature 2", "Feature 3", "Feature 4"]
+      features: ["1000+ Users", "10 time Voice Bot", "10 time Chat Bot"]
     },
     {
       title: "Advanced",
       price: "39", 
-      features: ["15 Users", "Feature 2", "Feature 3", "Feature 4"],
+      features: ["15 Users", "100 time Voice Bot", "100 time Chat Bot"],
       isPrimary: true
     },
     {
       title: "Complete",
       price: "59",
-      features: ["15 Users", "Feature 2", "Feature 3", "Feature 4"]
+      features: ["15 Users", "Unlimited Voice Bot", "Unlimited Chat Bot"]
     }
   ];
 
