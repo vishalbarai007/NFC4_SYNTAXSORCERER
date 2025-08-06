@@ -9,10 +9,16 @@ import { Navigation2 } from "@/components/navigation2";
 
 export default function DashboardPage() {
   return (
-    <div 
-      className="min-h-screen dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-800"
+    <div
+      className="min-h-screen dark:br-[#21001f]"
       style={{
-        background: `linear-gradient(to bottom right, #dbe9f4, rgba(30, 58, 138, 0.1), rgba(33, 0, 31, 0.1))`
+        // background: `linear-gradient(to bottom right, rgba(30, 58, 138, 0.1), rgba(33, 0, 31, 0.1))`
+        background: `linear-gradient(
+  to bottom right,
+  rgba(59, 88, 163, 0.2),   /* lighter indigo */
+  rgba(70, 20, 60, 0.2)   /* soft indigo-violet with more visibility */
+)`
+
       }}
     >
       <Navigation2 />

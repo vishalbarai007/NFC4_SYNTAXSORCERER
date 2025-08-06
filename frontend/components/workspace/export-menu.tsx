@@ -7,7 +7,7 @@ import { toast } from "sonner"
 
 export function ExportMenu() {
   const handleExport = (format: string) => {
-    toast.loading(`📤 Preparing ${format.toUpperCase()} export...`)
+    toast.loading(` Preparing ${format.toUpperCase()} export...`)
 
     // Simulate export process
     setTimeout(() => {
@@ -30,7 +30,7 @@ export function ExportMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm" className="hover-lift">
-          <Download className="h-4 w-4 mr-2" />📤 Export
+          <Download className="h-4 w-4 mr-2" /> Export
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
