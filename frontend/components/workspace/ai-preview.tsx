@@ -55,12 +55,12 @@ export function AIPreview() {
   const applySuggestion = (id: string) => {
     setSuggestions((prev) => prev.map((s) => (s.id === id ? { ...s, applied: true, rejected: false } : s)))
     const suggestion = suggestions.find((s) => s.id === id)
-    toast.success(`✅ Applied: "${suggestion?.suggestion}" 🎉`)
+    toast.success(` Applied: "${suggestion?.suggestion}" 🎉`)
   }
 
   const rejectSuggestion = (id: string) => {
     setSuggestions((prev) => prev.filter((s) => s.id !== id))
-    toast.info("🗑️ Suggestion removed")
+    toast.info(" Suggestion removed")
   }
 
   const activeSuggestions = suggestions.filter((s) => !s.rejected)
@@ -76,7 +76,7 @@ export function AIPreview() {
               variant="secondary"
               className="bg-gradient-to-r from-green-100 to-green-200 dark:from-green-900/20 dark:to-green-800/20"
             >
-              ✅ {appliedCount} Applied
+               {appliedCount} Applied
             </Badge>
             <Badge variant="outline">💡 {activeSuggestions.length} Total</Badge>
           </div>
@@ -101,10 +101,10 @@ export function AIPreview() {
                 >
                   <CardHeader className="pb-3">
                     <CardTitle className="text-sm flex items-center gap-2">
-                      <MessageSquare className="h-4 w-4" />💬 Dialogue Enhancement
+                      <MessageSquare className="h-4 w-4" /> Dialogue Enhancement
                       {suggestion.applied && (
                         <Badge variant="default" className="text-xs">
-                          ✅ Applied
+                           Applied
                         </Badge>
                       )}
                     </CardTitle>
@@ -133,7 +133,7 @@ export function AIPreview() {
                           onClick={() => applySuggestion(suggestion.id)}
                           className="hover-lift bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
                         >
-                          <CheckCircle className="h-3 w-3 mr-1" />✅ Apply
+                          <CheckCircle className="h-3 w-3 mr-1" /> Apply
                         </Button>
                         <Button
                           size="sm"
@@ -142,7 +142,7 @@ export function AIPreview() {
                           className="hover-lift hover:bg-red-50 hover:border-red-200 dark:hover:bg-red-900/20"
                         >
                           <Trash2 className="h-3 w-3 mr-1" />
-                          🗑️ Remove
+                           Remove
                         </Button>
                       </div>
                     )}
@@ -164,7 +164,7 @@ export function AIPreview() {
                       <Lightbulb className="h-4 w-4" />😄 Punchline Enhancement
                       {suggestion.applied && (
                         <Badge variant="default" className="text-xs">
-                          ✅ Applied
+                          Applied
                         </Badge>
                       )}
                     </CardTitle>
@@ -193,7 +193,7 @@ export function AIPreview() {
                           onClick={() => applySuggestion(suggestion.id)}
                           className="hover-lift bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600"
                         >
-                          <CheckCircle className="h-3 w-3 mr-1" />✅ Apply
+                          <CheckCircle className="h-3 w-3 mr-1" />Apply
                         </Button>
                         <Button
                           size="sm"
@@ -202,7 +202,7 @@ export function AIPreview() {
                           className="hover-lift hover:bg-red-50 hover:border-red-200 dark:hover:bg-red-900/20"
                         >
                           <Trash2 className="h-3 w-3 mr-1" />
-                          🗑️ Remove
+                          Remove
                         </Button>
                       </div>
                     )}

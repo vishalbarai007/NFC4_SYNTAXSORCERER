@@ -9,7 +9,7 @@ export function QuickActions() {
   return (
     <Card className="hover-lift">
       <CardHeader>
-        <CardTitle>⚡ Quick Actions</CardTitle>
+        <CardTitle> Quick Actions</CardTitle>
         <CardDescription>Common tasks and helpful resources</CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
@@ -26,7 +26,7 @@ export function QuickActions() {
         <Button variant="outline" className="w-full justify-start hover-lift bg-transparent" asChild>
           <Link href="/settings">
             <Settings className="mr-2 h-4 w-4" />
-            ⚙️ Settings
+             Settings
           </Link>
         </Button>
         <Button variant="outline" className="w-full justify-start hover-lift bg-transparent" asChild>
