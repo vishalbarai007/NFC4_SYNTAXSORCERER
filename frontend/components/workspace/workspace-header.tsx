@@ -15,7 +15,7 @@ interface WorkspaceHeaderProps {
   compareMode?: boolean
 }
 
-export function WorkspaceHeader({ scriptId, onCompareToggle, compareMode }: WorkspaceHeaderProps) {
+export function WorkspaceHeader({ scriptId, onCompareToggle, compareMode, onReAnalyze }: WorkspaceHeaderProps) {
   const [isSaving, setIsSaving] = useState(false)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
 
@@ -68,7 +68,7 @@ export function WorkspaceHeader({ scriptId, onCompareToggle, compareMode }: Work
             {isSaving ? "Saving..." : "Save"}
           </Button>
 
-          <Button variant="ghost" size="sm" className="hover-lift" onClick={handleReAnalyze} disabled={isAnalyzing}>
+          <Button variant="ghost" size="sm" className="hover-lift" onClick={onReAnalyze} disabled={isAnalyzing}>
             <RefreshCw className={`h-4 w-4 mr-2 ${isAnalyzing ? "animate-spin" : ""}`} />
             {isAnalyzing ? "Analyzing..." : "Re-analyze"}
           </Button>

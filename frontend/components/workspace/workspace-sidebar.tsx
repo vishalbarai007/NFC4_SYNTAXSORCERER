@@ -127,10 +127,10 @@ export function WorkspaceSidebar({ scenes, characters, loading = false }: Worksp
                 ) : characters && characters.length > 0 ? (
                   characters.map((character, charIndex) => (
                     <div
-                      key={character.name || `char-${charIndex}`}
+                      key={character || `char-${charIndex}`}
                       className="p-2 border rounded-lg hover:bg-muted/50 transition-colors"
                     >
-                      <h4 className="font-medium text-sm">🎭 {character.name || "Unknown Character"}</h4>
+                      <h4 className="font-medium text-sm">🎭 {character || "Unknown Character"}</h4>
                       {character.voice && (
                         <p className="text-xs text-muted-foreground mb-1">🗣️ Voice: {character.voice}</p>
                       )}

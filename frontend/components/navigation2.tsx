@@ -1,5 +1,5 @@
 
-// Updated Navigation2 Component
+// Updated Navigation2 Compone-
 "use client";
 
 import { useState } from "react";
@@ -46,6 +46,9 @@ export function Navigation2() {
           <ModeToggle />
           <Button variant="ghost" className="hover-lift" asChild>
             <Link href="/dashboard">Dashboard</Link>
+          </Button>
+          <Button variant="ghost" className="hover-lift" asChild>
+            <Link href="/chatbot">Chat Bot</Link>
           </Button>
           <Button
             className="hover-lift text-white"

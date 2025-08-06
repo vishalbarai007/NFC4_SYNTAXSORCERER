@@ -132,6 +132,22 @@ export default function WorkspacePage() {
     }
   };
 
+const handleReAnalyze = async () => {
+  if (!scriptContent) {
+    toast.error("No script content available to analyze");
+    return;
+  }
+
+  try {
+    toast.loading("Re-analyzing script...");
+    await fetchSidebarData(scriptContent);
+    toast.success("Script re-analyzed successfully!");
+  } catch (error) {
+    console.error("Error during re-analyze:", error);
+    toast.error("Failed to re-analyze script");
+  }
+};
+
   if (loading || authLoading || scriptsLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -203,17 +219,18 @@ export default function WorkspacePage() {
 
   return (
     <WorkspaceLayout>
-      <WorkspaceHeader
-        scriptId={script.scriptId}
-        scriptTitle={script.title}
-        originalName={script.originalName}
-        fileType={script.type}
-        uploadedAt={script.uploadedAt}
-        onCompareToggle={() => setCompareMode(!compareMode)}
-        compareMode={compareMode}
-        hasUnsavedChanges={hasUnsavedChanges}
-        onSave={handleSave}
-      />
+<WorkspaceHeader
+  scriptId={script.scriptId}
+  scriptTitle={script.title}
+  originalName={script.originalName}
+  fileType={script.type}
+  uploadedAt={script.uploadedAt}
+  onCompareToggle={() => setCompareMode(!compareMode)}
+  compareMode={compareMode}
+  hasUnsavedChanges={hasUnsavedChanges}
+  onSave={handleSave}
+  onReAnalyze={handleReAnalyze} // ✅ New prop
+/>
       <div className="flex flex-1 overflow-hidden">
         <div className="hidden lg:block">
           <WorkspaceSidebar 
