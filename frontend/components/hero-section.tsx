@@ -57,7 +57,7 @@ export function HeroSection() {
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg hover-lift bg-transparent hover:bg-primary/5" asChild>
-              <Link href="/dashboard">
+              <Link href="/auth">
                 📊 View Dashboard
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>

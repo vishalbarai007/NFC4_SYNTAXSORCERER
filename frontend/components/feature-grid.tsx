@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { BarChart3, MessageSquare, Lightbulb, Shield, Users, TrendingUp } from "lucide-react"
+import SpotlightCard from "./SpotlightCard"
 
 const features = [
   {
@@ -45,7 +46,7 @@ const features = [
 
 export function FeatureGrid() {
   return (
-    <section className="container py-24 mt-[100px]">
+    <section className="container py-24 mt-[100px]" >
       <div className="mx-auto max-w-2xl text-center mb-16">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Professional Tools for Screenwriters 🛠️</h2>
         <p className="text-lg text-muted-foreground">
@@ -55,7 +56,7 @@ export function FeatureGrid() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {features.map((feature, index) => (
-          <Card
+          <SpotlightCard
             key={index}
             className="fade-in hover-lift hover-glow bg-gradient-to-br from-white to-blue-50/50 dark:from-slate-800 dark:to-purple-900/20"
           >
@@ -69,7 +70,7 @@ export function FeatureGrid() {
             <CardContent>
               <CardDescription className="text-base">{feature.description}</CardDescription>
             </CardContent>
-          </Card>
+          </SpotlightCard>
         ))}
       </div>
     </section>

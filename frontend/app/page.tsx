@@ -7,12 +7,13 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Galaxy from "@/components/Galaxy"
 import CurvedLoop from "@/components/CurvedLoop"
+import PricingComponent from "@/components/pricing"
 // import Galaxy from './Galaxy';
 
 export default function HomePage() {
   return (
     // <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-800">
-    <div className="min-h-screen bg-gradient-to-br bg-[#dbe9f4] dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-800">
+    <div className="min-h-screen bg-gradient-to-br bg-[#dbe9f4] dark:from-[#21001f] dark:via-[#21001f] dark:to-[#21001f]">
       <Navigation />
       <main className="flex-1">
         {/* <div className="h-screen w-">
@@ -38,6 +39,7 @@ export default function HomePage() {
         <FeatureGrid />
         <StatsSection />
         <TestimonialsSection />
+        <PricingComponent/>
         <CTASection />
       </main>
       <Footer />
