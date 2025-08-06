@@ -11,14 +11,19 @@ export function DashboardHeader() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
+<<<<<<< HEAD
           <h1 className="text-3xl font-bold tracking-tight">Welcome back, {user ? user.displayName || "User" : "Guest"}! 👋</h1>
           <p className="text-muted-foreground">Continue crafting your stories with AI-enhanced insights ✨</p>
+=======
+          <h1 className="text-3xl font-bold tracking-tight text-[#FFD700]">Welcome back, Writer! 👋</h1>
+          <p className="text-muted-foreground text-[#00BFAE]">Continue crafting your stories with AI-enhanced insights ✨</p>
+>>>>>>> 3317a54476ee4928549712a418f011c415d85f15
         </div>
 
         <div className="flex gap-2">
           <Button className="hover-lift bg-gradient-to-r from-primary to-purple-600" asChild>
             <Link href="/upload">
-              <Upload className="mr-2 h-4 w-4" />📄 Upload New Script
+              <Upload className="mr-2 h-4 w-4" /> Upload New Script
             </Link>
           </Button>
           <Button variant="outline" className="hover-lift bg-transparent" asChild>
@@ -38,7 +43,7 @@ export function DashboardHeader() {
           asChild
         >
           <Link href="/workspace/demo?tab=tone">
-            <BarChart3 className="mr-2 h-4 w-4" />📊 Tone Analysis
+            <BarChart3 className="mr-2 h-4 w-4" /> Tone Analysis
           </Link>
         </Button>
         <Button
@@ -47,7 +52,7 @@ export function DashboardHeader() {
           asChild
         >
           <Link href="/workspace/demo?tab=dialogue">
-            <MessageSquare className="mr-2 h-4 w-4" />💬 Dialogue Tools
+            <MessageSquare className="mr-2 h-4 w-4" /> Dialogue Tools
           </Link>
         </Button>
         <Button
@@ -56,7 +61,7 @@ export function DashboardHeader() {
           asChild
         >
           <Link href="/workspace/demo?tab=characters">
-            <Users className="mr-2 h-4 w-4" />👥 Characters
+            <Users className="mr-2 h-4 w-4" /> Characters
           </Link>
         </Button>
         <Button
@@ -65,7 +70,7 @@ export function DashboardHeader() {
           asChild
         >
           <Link href="/workspace/demo?tab=ai">
-            <Brain className="mr-2 h-4 w-4" />🤖 AI Insights
+            <Brain className="mr-2 h-4 w-4" /> AI Insights
           </Link>
         </Button>
       </div>

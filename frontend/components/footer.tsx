@@ -81,7 +81,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
-          <p>&copy; 2024 ScriptCraft. All rights reserved. Made with ❤️ for writers</p>
+          <p>&copy; 2025 ScriptCraft. All rights reserved. Made with ❤️ for writers</p>
         </div>
       </div>
     </footer>

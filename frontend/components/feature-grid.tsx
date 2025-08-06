@@ -5,38 +5,38 @@ import { BarChart3, MessageSquare, Lightbulb, Shield, Users, TrendingUp } from "
 
 const features = [
   {
-    icon: BarChart3,
+    // icon: BarChart3,
     emoji: "📊",
     title: "Tone Analysis",
     description:
       "Analyze emotional tone and pacing throughout your screenplay with detailed scene-by-scene breakdowns.",
   },
   {
-    icon: MessageSquare,
+    // icon: MessageSquare,
     emoji: "💬",
     title: "Dialogue Enhancement",
     description: "AI-powered suggestions to make your dialogue more impactful, natural, and character-specific.",
   },
   {
-    icon: Lightbulb,
+    // icon: Lightbulb,
     emoji: "💡",
     title: "Punchline Suggestions",
     description: "Enhance comedic timing and dramatic impact with intelligent line suggestions.",
   },
   {
-    icon: Shield,
+    // icon: Shield,
     emoji: "🛡️",
     title: "Plagiarism Defense",
     description: "Protect your work with comprehensive plagiarism checking and originality verification.",
   },
   {
-    icon: Users,
+    // icon: Users,
     emoji: "👥",
     title: "Character Consistency",
     description: "Ensure character voices remain authentic and consistent throughout your script.",
   },
   {
-    icon: TrendingUp,
+    // icon: TrendingUp,
     emoji: "📈",
     title: "Progress Tracking",
     description: "Monitor your writing improvement with detailed analytics and feedback metrics.",
@@ -45,7 +45,7 @@ const features = [
 
 export function FeatureGrid() {
   return (
-    <section className="container py-24">
+    <section className="container py-24 mt-[100px]">
       <div className="mx-auto max-w-2xl text-center mb-16">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Professional Tools for Screenwriters 🛠️</h2>
         <p className="text-lg text-muted-foreground">
@@ -62,7 +62,7 @@ export function FeatureGrid() {
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <div className="text-2xl">{feature.emoji}</div>
-                <feature.icon className="h-6 w-6 text-primary" />
+                {/* <feature.icon className="h-6 w-6 text-primary" /> */}
               </div>
               <CardTitle className="text-lg">{feature.title}</CardTitle>
             </CardHeader>

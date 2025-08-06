@@ -15,12 +15,12 @@ export function QuickActions() {
       <CardContent className="space-y-2">
         <Button variant="outline" className="w-full justify-start hover-lift bg-transparent" asChild>
           <Link href="/upload">
-            <Upload className="mr-2 h-4 w-4" />📄 Upload New Script
+            <Upload className="mr-2 h-4 w-4" /> Upload New Script
           </Link>
         </Button>
         <Button variant="outline" className="w-full justify-start hover-lift bg-transparent" asChild>
           <Link href="/templates">
-            <BookOpen className="mr-2 h-4 w-4" />📋 Browse Templates
+            <BookOpen className="mr-2 h-4 w-4" /> Browse Templates
           </Link>
         </Button>
         <Button variant="outline" className="w-full justify-start hover-lift bg-transparent" asChild>
@@ -31,7 +31,7 @@ export function QuickActions() {
         </Button>
         <Button variant="outline" className="w-full justify-start hover-lift bg-transparent" asChild>
           <Link href="/help">
-            <HelpCircle className="mr-2 h-4 w-4" />❓ Help & Tutorials
+            <HelpCircle className="mr-2 h-4 w-4" /> Help & Tutorials
           </Link>
         </Button>
       </CardContent>
