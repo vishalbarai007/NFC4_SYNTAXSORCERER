@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/auth-context";
-import { useScripts, useScript, useScriptText } from "@/contexts/scripts-context";
+import { useScripts, useScript } from "@/contexts/scripts-context";
 import { WorkspaceLayout } from "@/components/workspace/workspace-layout";
 import { WorkspaceHeader } from "@/components/workspace/workspace-header";
 import { WorkspaceSidebar } from "@/components/workspace/workspace-sidebar";
@@ -22,51 +22,40 @@ export default function WorkspacePage() {
   const [error, setError] = useState<string | null>(null);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
+  const [scenes, setScenes] = useState<string[]>([]);
+  const [characters, setCharacters] = useState<string[]>([]);
+  const [sidebarLoading, setSidebarLoading] = useState(false);
+
   const params = useParams();
   const router = useRouter();
   const { user, loading: authLoading } = useAuth();
   const { scripts, loading: scriptsLoading, getScriptText } = useScripts();
   
   const scriptId = params.id as string;
-  
-  // ✅ Find script by scriptId instead of id
   const script = useScript(scriptId);
-  
-  // ✅ Alternative: Use the custom hook for script text
-  // const { text: scriptText, loading: textLoading } = useScriptText(scriptId);
-
-  console.log("Current script:", script);
-  console.log("Script ID from params:", scriptId);
 
   useEffect(() => {
     const fetchScriptContent = async () => {
-      // ✅ Wait for auth and scripts to load
-      if (authLoading || scriptsLoading) {
-        return;
-      }
+      if (authLoading || scriptsLoading) return;
 
-      // ✅ Check if user is authenticated
       if (!user) {
         setError("Please log in to view scripts");
         setLoading(false);
         return;
       }
 
-      // ✅ Check if scriptId is provided
       if (!scriptId) {
         setError("No script ID provided");
         setLoading(false);
         return;
       }
 
-      // ✅ Check if script exists
       if (!script) {
         setError("Script not found");
         setLoading(false);
         return;
       }
 
-      // ✅ Check if script has text extraction
       if (!script.hasTextExtraction) {
         setError("Script text has not been extracted yet. Please wait for processing to complete.");
         setLoading(false);
@@ -76,22 +65,17 @@ export default function WorkspacePage() {
       try {
         setLoading(true);
         setError(null);
-
-        console.log(`Fetching text for script ID: ${scriptId}`);
         
-        // ✅ Use the context method to get script text
         const content = await getScriptText(scriptId);
-        
-        if (!content) {
-          throw new Error("No content received from server");
-        }
+        if (!content) throw new Error("No content received from server");
 
         setScriptContent(content);
         setOriginalContent(content);
         setHasUnsavedChanges(false);
 
-        console.log(`✅ Successfully loaded script content (${content.length} characters)`);
-        
+        // Fetch sidebar data after content is set
+        await fetchSidebarData(content);
+
       } catch (err) {
         const message = err instanceof Error ? err.message : "Failed to load script content";
         console.error("Error fetching script content:", err);
@@ -105,17 +89,41 @@ export default function WorkspacePage() {
     fetchScriptContent();
   }, [user, script, scriptId, authLoading, scriptsLoading, getScriptText]);
 
-  // ✅ Handle content changes
+  // ✅ Fetch scenes and characters from API
+  const fetchSidebarData = async (content: string) => {
+    try {
+      setSidebarLoading(true);
+      const response = await fetch("http://localhost:8000/charnscenes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ script: content }), 
+
+      });
+
+      if (!response.ok) {
+        throw new Error(`API returned status ${response.status}`);
+      }
+
+      const data = await response.json();
+      setScenes(data.scenes || []);
+      setCharacters(data.characters || []);
+      console.log("Sidebar data fetched:", data);
+
+    } catch (err) {
+      console.error("Error fetching scenes and characters:", err);
+      toast.error("Failed to load sidebar data");
+    } finally {
+      setSidebarLoading(false);
+    }
+  };
+
   const handleContentChange = (newContent: string) => {
     setScriptContent(newContent);
     setHasUnsavedChanges(newContent !== originalContent);
   };
 
-  // ✅ Save script changes (you might want to implement this)
   const handleSave = async () => {
     try {
-      // Implement save functionality here
-      // This would typically save to your backend
       toast.success("Script saved successfully");
       setOriginalContent(scriptContent);
       setHasUnsavedChanges(false);
@@ -124,7 +132,6 @@ export default function WorkspacePage() {
     }
   };
 
-  // ✅ Loading state
   if (loading || authLoading || scriptsLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -143,7 +150,6 @@ export default function WorkspacePage() {
     );
   }
 
-  // ✅ Error state with better UX
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -171,7 +177,6 @@ export default function WorkspacePage() {
     );
   }
 
-  // ✅ Script not found state
   if (!script) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -199,15 +204,15 @@ export default function WorkspacePage() {
   return (
     <WorkspaceLayout>
       <WorkspaceHeader
-        scriptId={script.scriptId} // ✅ Use scriptId
+        scriptId={script.scriptId}
         scriptTitle={script.title}
-        originalName={script.originalName} // ✅ Pass original name
-        fileType={script.type} // ✅ Pass file type
-        uploadedAt={script.uploadedAt} // ✅ Pass upload date
+        originalName={script.originalName}
+        fileType={script.type}
+        uploadedAt={script.uploadedAt}
         onCompareToggle={() => setCompareMode(!compareMode)}
         compareMode={compareMode}
         hasUnsavedChanges={hasUnsavedChanges}
-        onSave={handleSave} // ✅ Pass save handler
+        onSave={handleSave}
       />
       <div className="flex flex-1 overflow-hidden">
         <div className="hidden lg:block">
@@ -215,6 +220,9 @@ export default function WorkspacePage() {
             scriptId={script.scriptId}
             scriptTitle={script.title}
             scriptContent={scriptContent}
+            scenes={scenes}
+            characters={characters}
+            loading={sidebarLoading}
           />
         </div>
         {compareMode ? (
@@ -243,7 +251,7 @@ export default function WorkspacePage() {
                 onContentChange={handleContentChange}
                 scriptId={script.scriptId}
                 scriptTitle={script.title}
-                readonly={script.status === "Analyzing"} // ✅ Make readonly if analyzing
+                readonly={script.status === "Analyzing"}
               />
             </div>
             <div className="flex-1">

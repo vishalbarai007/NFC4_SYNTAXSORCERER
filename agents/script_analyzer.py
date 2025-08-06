@@ -75,23 +75,3 @@ class ScriptAnalyzerAgent:
   def describe(self) -> str:
     return f"I am {self.name}. My goal is: {self.goal}"
 
-sample_script = """
-INT. BEDROOM - NIGHT
-
-A dimly lit room. The clock ticks.
-
-SARAH
-I can't keep doing this, John.
-
-JOHN
-Then stop pretending.
-
-CUT TO:
-
-EXT. PARK - DAY
-
-Children play in the distance.
-
-MARK
-It’s a beautiful day.
-"""
