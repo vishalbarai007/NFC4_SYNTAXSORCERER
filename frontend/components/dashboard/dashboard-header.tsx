@@ -11,13 +11,8 @@ export function DashboardHeader() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-<<<<<<< HEAD
-          <h1 className="text-3xl font-bold tracking-tight">Welcome back, {user ? user.displayName || "User" : "Guest"}! 👋</h1>
-          <p className="text-muted-foreground">Continue crafting your stories with AI-enhanced insights ✨</p>
-=======
-          <h1 className="text-3xl font-bold tracking-tight text-[#FFD700]">Welcome back, Writer! 👋</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-[#FFD700]">Welcome back, {user ? user.displayName || "User" : "Guest"}! 👋</h1>
           <p className="text-muted-foreground text-[#00BFAE]">Continue crafting your stories with AI-enhanced insights ✨</p>
->>>>>>> 3317a54476ee4928549712a418f011c415d85f15
         </div>
 
         <div className="flex gap-2">
