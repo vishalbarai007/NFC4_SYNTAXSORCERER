@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,24 +16,92 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PenTool, Mail, Lock, User, Github } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import authService from '@/services/authService';
+import { useAuthState } from '@/hooks/useAuthState';
+import { authHelpers } from '@/utils/authHelpers';
 
 export default function AuthPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const router = useRouter();
 
-  const handleAuth = async (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate authentication
-    setTimeout(() => {
+    try {
+      const result = await authService.signUpWithEmail(email, password, displayName);
+
+      if (result.success) {
+        console.log('User created:', result.user);
+        console.log('Message:', result.message);
+
+        // Optional delay before navigation
+        setTimeout(() => {
+          setIsLoading(false);
+          router.push("/dashboard");
+        }, 2000);
+      } else {
+        setIsLoading(false);
+        console.error('Error:', result.error);
+      }
+    } catch (error) {
       setIsLoading(false);
-      router.push("/dashboard");
-    }, 2000);
+      console.error('Unexpected error during sign-up:', error);
+    }
+  };
+
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const result = await authService.signInWithEmail(email, password);
+
+      if (result.success) {
+        console.log('User signed in:', result.user);
+
+        setTimeout(() => {
+          setIsLoading(false);
+          router.push("/dashboard");
+        }, 2000);
+      } else {
+        setIsLoading(false);
+        console.error('Error:', result.error);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.error('Unexpected error during sign-in:', error);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setIsLoading(true);
+
+    try {
+      const result = await authService.signInWithGoogle();
+
+      if (result.success) {
+        console.log('User signed in with Google:', result.user);
+
+        setTimeout(() => {
+          setIsLoading(false);
+          router.push("/dashboard");
+        }, 2000);
+      } else {
+        setIsLoading(false);
+        console.error('Google login error:', result.error);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.error('Unexpected error during Google login:', error);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-800 center-content w-[50%] align-middle justify-center ">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-800 center-content w-[50%] align-middle justify-center">
       <div className="container max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-2 mb-6">
@@ -64,7 +131,7 @@ export default function AuthPage() {
               </TabsList>
 
               <TabsContent value="login">
-                <form onSubmit={handleAuth} className="space-y-4">
+                <form onSubmit={handleSignIn} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="email">📧 Email</Label>
                     <div className="relative">
@@ -75,6 +142,8 @@ export default function AuthPage() {
                         placeholder="your@email.com"
                         className="pl-10"
                         required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                   </div>
@@ -88,6 +157,8 @@ export default function AuthPage() {
                         placeholder="••••••••"
                         className="pl-10"
                         required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
                   </div>
@@ -102,7 +173,7 @@ export default function AuthPage() {
               </TabsContent>
 
               <TabsContent value="signup">
-                <form onSubmit={handleAuth} className="space-y-4">
+                <form onSubmit={handleSignUp} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">👤 Full Name</Label>
                     <div className="relative">
@@ -112,6 +183,8 @@ export default function AuthPage() {
                         placeholder="John Doe"
                         className="pl-10"
                         required
+                        value={displayName}
+                        onChange={(e) => setDisplayName(e.target.value)}
                       />
                     </div>
                   </div>
@@ -125,6 +198,8 @@ export default function AuthPage() {
                         placeholder="your@email.com"
                         className="pl-10"
                         required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                   </div>
@@ -138,6 +213,8 @@ export default function AuthPage() {
                         placeholder="••••••••"
                         className="pl-10"
                         required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
                   </div>
@@ -166,10 +243,10 @@ export default function AuthPage() {
               <Button
                 variant="outline"
                 className="w-full mt-4 hover-lift bg-transparent"
-                onClick={handleAuth}
+                onClick={handleGoogleLogin}
               >
                 <Github className="mr-2 h-4 w-4" />
-                🐙 GitHub
+                Google
               </Button>
             </div>
           </CardContent>

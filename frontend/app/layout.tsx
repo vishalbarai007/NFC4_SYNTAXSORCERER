@@ -8,6 +8,7 @@ import { ToastProvider } from "@/components/toast-provider";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { SettingsProvider } from "@/contexts/settings-context";
 import { ScriptsProvider } from "@/contexts/scripts-context";
+import { AuthProvider } from "@/contexts/auth-context";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const courierPrime = Courier_Prime({
@@ -43,21 +44,23 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${courierPrime.variable} font-sans antialiased`}
       >
-        <ErrorBoundary>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <SettingsProvider>
-              <ScriptsProvider>
-                <div className="min-h-screen flex flex-col">{children}</div>
-                <ToastProvider />
-              </ScriptsProvider>
-            </SettingsProvider>
-          </ThemeProvider>
-        </ErrorBoundary>
+        <AuthProvider>
+          <ErrorBoundary>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <SettingsProvider>
+                <ScriptsProvider>
+                  <div className="min-h-screen flex flex-col">{children}</div>
+                  <ToastProvider />
+                </ScriptsProvider>
+              </SettingsProvider>
+            </ThemeProvider>
+          </ErrorBoundary>
+        </AuthProvider>
       </body>
     </html>
   );

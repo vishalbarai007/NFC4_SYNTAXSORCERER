@@ -1,84 +1,100 @@
-"use client"
 
-import { useState, useCallback } from "react"
-import { useDropzone } from "react-dropzone"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Upload, FileText, CheckCircle, AlertCircle } from "lucide-react"
-import { useRouter } from "next/navigation"
-import { useScripts } from "@/contexts/scripts-context"
-import { toast } from "sonner"
+"use client";
+
+import { useState, useCallback } from "react";
+import { useDropzone } from "react-dropzone";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { Upload, FileText, CheckCircle, AlertCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useScripts } from "@/contexts/scripts-context";
+import { toast } from "sonner";
+import { useAuth } from "@/contexts/auth-context"; // ✅ Import Auth Context
 
 export function UploadDropzone() {
-  const [uploading, setUploading] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [uploadStatus, setUploadStatus] = useState<"idle" | "success" | "error">("idle")
-  const router = useRouter()
-  const { addScript } = useScripts()
+  const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [uploadStatus, setUploadStatus] = useState<"idle" | "success" | "error">("idle");
+  const router = useRouter();
+  const { addScript } = useScripts();
+  const { user } = useAuth(); // ✅ Firebase Auth User
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
-      const file = acceptedFiles[0]
-      if (!file) return
+      const file = acceptedFiles[0];
+      if (!file) return;
 
-      setUploading(true)
-      setProgress(0)
-      setUploadStatus("idle")
+      if (!user) {
+        toast.error("Please sign in to upload files");
+        return;
+      }
 
-      // Simulate upload progress
+      setUploading(true);
+      setProgress(0);
+      setUploadStatus("idle");
+
+      // Simulate progress visually
       const interval = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 90) {
-            clearInterval(interval)
-            return 90
+            clearInterval(interval);
+            return 90;
           }
-          return prev + 10
-        })
-      }, 200)
+          return prev + 10;
+        });
+      }, 200);
 
       try {
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 2000))
+        // Prepare form data
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("userId", user.uid); // ✅ Attach Firebase UID
+
+        // Replace this with your Ngrok URL
+        const response = await fetch("http://localhost:5000/upload", {
+          method: "POST",
+          body: formData
+        });
+
+        clearInterval(interval);
+
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || "Upload failed");
 
         // Extract filename without extension for title
-        const title = file.name.replace(/\.[^/.]+$/, "")
-
-        // Determine script type based on file extension or content
-        const extension = file.name.split(".").pop()?.toLowerCase()
-        let type = "Screenplay"
-
-        if (extension === "pdf") type = "PDF Script"
-        else if (extension === "fountain") type = "Fountain Script"
-        else if (extension === "fdx") type = "Final Draft"
-        else if (extension === "docx") type = "Word Document"
+        const title = file.name.replace(/\.[^/.]+$/, "");
+        const extension = file.name.split(".").pop()?.toLowerCase();
+        let type = "Screenplay";
+        if (extension === "pdf") type = "PDF Script";
+        else if (extension === "fountain") type = "Fountain Script";
+        else if (extension === "fdx") type = "Final Draft";
+        else if (extension === "docx") type = "Word Document";
 
         // Add script to context
         addScript({
           title,
           type,
-          status: "Analyzing",
+          status: "Uploaded",
           improvement: "+0%",
-        })
+          fileUrl: result.fileUrl // ✅ URL from your server response
+        });
 
-        setProgress(100)
-        setUploadStatus("success")
-
-        toast.success(`📄 "${title}" uploaded successfully!`)
+        setProgress(100);
+        setUploadStatus("success");
+        toast.success(`📄 "${title}" uploaded successfully!`);
 
         // Redirect to dashboard after successful upload
-        setTimeout(() => {
-          router.push("/dashboard")
-        }, 1000)
+        setTimeout(() => router.push("/dashboard"), 1000);
       } catch (error) {
-        setUploadStatus("error")
-        toast.error("❌ Upload failed. Please try again.")
+        console.error(error);
+        setUploadStatus("error");
+        toast.error("❌ Upload failed. Please try again.");
       } finally {
-        setUploading(false)
-        clearInterval(interval)
+        setUploading(false);
       }
     },
-    [router, addScript],
-  )
+    [router, addScript, user]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -86,11 +102,11 @@ export function UploadDropzone() {
       "application/pdf": [".pdf"],
       "text/plain": [".txt"],
       "text/fountain": [".fountain"],
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"]
     },
     maxFiles: 1,
-    disabled: uploading,
-  })
+    disabled: uploading
+  });
 
   return (
     <div className="space-y-4">
@@ -117,7 +133,7 @@ export function UploadDropzone() {
 
           {uploading ? (
             <div className="space-y-2">
-              <p className="text-sm font-medium">Uploading and analyzing...</p>
+              <p className="text-sm font-medium">Uploading to server...</p>
               <Progress value={progress} className="w-full" />
               <p className="text-xs text-muted-foreground">{progress}% complete</p>
             </div>
@@ -151,5 +167,5 @@ export function UploadDropzone() {
         </div>
       )}
     </div>
-  )
+  );
 }

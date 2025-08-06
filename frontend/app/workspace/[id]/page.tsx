@@ -1,20 +1,23 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { WorkspaceLayout } from "@/components/workspace/workspace-layout"
-import { ScriptEditor } from "@/components/workspace/script-editor"
-import { AIPreview } from "@/components/workspace/ai-preview"
-import { WorkspaceSidebar } from "@/components/workspace/workspace-sidebar"
-import { WorkspaceHeader } from "@/components/workspace/workspace-header"
-import { CompareView } from "@/components/workspace/compare-view"
+import { useState } from "react";
+import { useParams } from "next/navigation"; // ✅ Import hook
+import { WorkspaceLayout } from "@/components/workspace/workspace-layout";
+import { ScriptEditor } from "@/components/workspace/script-editor";
+import { AIPreview } from "@/components/workspace/ai-preview";
+import { WorkspaceSidebar } from "@/components/workspace/workspace-sidebar";
+import { WorkspaceHeader } from "@/components/workspace/workspace-header";
+import { CompareView } from "@/components/workspace/compare-view";
 
-export default function WorkspacePage({ params }: { params: { id: string } }) {
-  const [compareMode, setCompareMode] = useState(false)
+export default function WorkspacePage() {
+  const [compareMode, setCompareMode] = useState(false);
+  const params = useParams(); // ✅ Get params from router
+  const scriptId = params.id as string; // ✅ Ensure it's a string
 
   return (
     <WorkspaceLayout>
       <WorkspaceHeader
-        scriptId={params.id}
+        scriptId={scriptId}
         onCompareToggle={() => setCompareMode(!compareMode)}
         compareMode={compareMode}
       />
@@ -36,5 +39,5 @@ export default function WorkspacePage({ params }: { params: { id: string } }) {
         )}
       </div>
     </WorkspaceLayout>
-  )
+  );
 }

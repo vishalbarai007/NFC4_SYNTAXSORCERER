@@ -3,13 +3,15 @@
 import { Button } from "@/components/ui/button"
 import { Plus, Upload, BarChart3, MessageSquare, Users, Brain } from "lucide-react"
 import Link from "next/link"
+import { useAuth } from "@/contexts/auth-context"
 
 export function DashboardHeader() {
+  const { user } = useAuth();
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Welcome back, Writer! 👋</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Welcome back, {user ? user.displayName || "User" : "Guest"}! 👋</h1>
           <p className="text-muted-foreground">Continue crafting your stories with AI-enhanced insights ✨</p>
         </div>
 

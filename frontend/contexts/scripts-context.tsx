@@ -1,109 +1,120 @@
-"use client"
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+"use client";
+
+import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { useAuth } from "@/contexts/auth-context"; // ✅ Ensure you have an Auth context to get user info
+import { toast } from "sonner";
 
 interface Script {
-  id: string
-  title: string
-  type: string
-  lastModified: string
-  status: "In Progress" | "Completed" | "Analyzing"
-  improvement: string
-  content?: string
+  id: string;
+  title: string;
+  type: string;
+  lastModified: string;
+  status: "In Progress" | "Completed" | "Analyzing" | "Uploaded";
+  improvement: string;
+  content?: string;
+  fileUrl?: string;
 }
 
 interface ScriptsContextType {
-  scripts: Script[]
-  addScript: (script: Omit<Script, "id" | "lastModified">) => void
-  updateScript: (id: string, updates: Partial<Script>) => void
-  deleteScript: (id: string) => void
+  scripts: Script[];
+  addScript: (script: Omit<Script, "id" | "lastModified">) => void;
+  updateScript: (id: string, updates: Partial<Script>) => void;
+  deleteScript: (id: string) => void;
+  refreshScripts: () => Promise<void>; // ✅ Added function to refresh from backend
 }
 
-const defaultScripts: Script[] = [
-  {
-    id: "1",
-    title: "The Last Stand",
-    type: "Feature Film",
-    lastModified: "2 hours ago",
-    status: "In Progress",
-    improvement: "+15%",
-  },
-  {
-    id: "2",
-    title: "Coffee Shop Chronicles",
-    type: "Short Film",
-    lastModified: "1 day ago",
-    status: "Completed",
-    improvement: "+23%",
-  },
-  {
-    id: "3",
-    title: "Midnight Conversations",
-    type: "Drama",
-    lastModified: "3 days ago",
-    status: "Analyzing",
-    improvement: "+8%",
-  },
-]
-
-const ScriptsContext = createContext<ScriptsContextType | undefined>(undefined)
+const ScriptsContext = createContext<ScriptsContextType | undefined>(undefined);
 
 export function ScriptsProvider({ children }: { children: ReactNode }) {
-  const [scripts, setScripts] = useState<Script[]>(defaultScripts)
+  const { user } = useAuth(); // ✅ Get logged-in user
+  const [scripts, setScripts] = useState<Script[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Load scripts from localStorage on mount
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedScripts = localStorage.getItem("scriptcraft-scripts")
-      if (savedScripts) {
-        try {
-          const parsed = JSON.parse(savedScripts)
-          setScripts(parsed)
-        } catch (error) {
-          console.warn("Failed to parse saved scripts:", error)
-          setScripts(defaultScripts)
-        }
+  // ✅ Fetch scripts from local backend when user logs in
+  const fetchScripts = async () => {
+    if (!user) return;
+    try {
+      setLoading(true);
+      const response = await fetch(`http://localhost:5000/files/${user.uid}`);
+      if (!response.ok) throw new Error("Failed to fetch scripts");
+
+      const json_res = await response.json();
+      const data = json_res.files;
+      if (!Array.isArray(data)) {
+        setScripts([]); // ✅ Safe fallback
+        return;
       }
-    }
-  }, [])
+      console.log(data);
 
-  // Save scripts to localStorage whenever scripts change
+      const formattedScripts: Script[] = data.map((file: any, index: number) => ({
+        id: index.toString(),
+        title: file.originalName, // Remove extension
+        type: getScriptType(file.fileName),
+        lastModified: new Date(file.uploadedAt).toLocaleString(),
+        status: "Uploaded",
+        improvement: "+0%",
+        fileUrl: file.url
+      }));
+
+      setScripts(formattedScripts);
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to load scripts");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ Helper to determine script type based on extension
+  const getScriptType = (filename: string) => {
+    const ext = filename.split(".").pop()?.toLowerCase();
+    if (ext === "pdf") return "PDF Script";
+    if (ext === "fountain") return "Fountain Script";
+    if (ext === "fdx") return "Final Draft";
+    if (ext === "docx") return "Word Document";
+    return "Unknown";
+  };
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("scriptcraft-scripts", JSON.stringify(scripts))
+    if (user) {
+      fetchScripts();
+    } else {
+      setScripts([]); // Clear scripts when user logs out
     }
-  }, [scripts])
+  }, [user]);
 
+  // ✅ Local operations (optional if you want to keep them)
   const addScript = (script: Omit<Script, "id" | "lastModified">) => {
     const newScript: Script = {
       ...script,
       id: Date.now().toString(),
-      lastModified: "Just now",
-    }
-    setScripts((prev) => [newScript, ...prev])
-  }
+      lastModified: "Just now"
+    };
+    setScripts((prev) => [newScript, ...prev]);
+  };
 
   const updateScript = (id: string, updates: Partial<Script>) => {
     setScripts((prev) =>
-      prev.map((script) => (script.id === id ? { ...script, ...updates, lastModified: "Just now" } : script)),
-    )
-  }
+      prev.map((script) => (script.id === id ? { ...script, ...updates, lastModified: "Just now" } : script))
+    );
+  };
 
   const deleteScript = (id: string) => {
-    setScripts((prev) => prev.filter((script) => script.id !== id))
-  }
+    setScripts((prev) => prev.filter((script) => script.id !== id));
+  };
 
   return (
-    <ScriptsContext.Provider value={{ scripts, addScript, updateScript, deleteScript }}>
+    <ScriptsContext.Provider value={{ scripts, addScript, updateScript, deleteScript, refreshScripts: fetchScripts }}>
       {children}
     </ScriptsContext.Provider>
-  )
+  );
 }
 
 export function useScripts() {
-  const context = useContext(ScriptsContext)
+  const context = useContext(ScriptsContext);
   if (context === undefined) {
-    throw new Error("useScripts must be used within a ScriptsProvider")
+    throw new Error("useScripts must be used within a ScriptsProvider");
   }
-  return context
+  return context;
 }

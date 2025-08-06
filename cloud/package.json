@@ -1,0 +1,25 @@
+{
+  "name": "cloud",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mammoth": "^1.10.0",
+    "multer": "^2.0.2",
+    "ngrok": "^5.0.0-beta.2",
+    "pdf-lib": "^1.17.1",
+    "pdf-parse": "^1.1.0",
+    "pdfjs-dist": "^3.10.111"
+  }
+}
