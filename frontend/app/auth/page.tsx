@@ -3,6 +3,7 @@
 import type React from "react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { FaGoogle } from "react-icons/fa";
 import {
   Card,
   CardContent,
@@ -168,7 +169,7 @@ export default function AuthPage() {
                     className="w-full hover-lift bg-gradient-to-r from-primary to-purple-600"
                     disabled={isLoading}
                   >
-                    {isLoading ? "🔄 Signing in..." : "🚀 Sign In"}
+                    {isLoading ? "🔄 Signing in..." : " Sign In"}
                   </Button>
                 </form>
               </TabsContent>
@@ -246,7 +247,8 @@ export default function AuthPage() {
                 className="w-full mt-4 hover-lift bg-transparent"
                 onClick={handleGoogleLogin}
               >
-                <Github className="mr-2 h-4 w-4" />
+                <FaGoogle className="mr-2 h-4 w-4" />
+
                 Google
               </Button>
             </div>

@@ -1,3 +1,5 @@
+
+// Updated Navigation2 Component
 "use client";
 
 import { useState } from "react";
@@ -25,8 +27,9 @@ export function Navigation2() {
           href="/"
           className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
         >
-          <PenTool className="h-6 w-6 text-primary" />
-          <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+          <PenTool className="h-6 w-6" style={{ color: '#1E3A8A' }} />
+          <span className="text-lg md:text-xl font-bold bg-gradient-to-r bg-clip-text text-transparent" 
+                style={{ backgroundImage: 'linear-gradient(to right, #1E3A8A, #21001f)' }}>
             ScriptCraft
           </span>
         </Link>
@@ -42,10 +45,19 @@ export function Navigation2() {
           </Suspense>
           <ModeToggle />
           <Button variant="ghost" className="hover-lift" asChild>
-            <Link href="/dashboard">📊 Dashboard</Link>
+            <Link href="/dashboard">Dashboard</Link>
           </Button>
           <Button
-            className="hover-lift bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90"
+            className="hover-lift text-white"
+            style={{ 
+              background: 'linear-gradient(to right, #1E3A8A, #21001f)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(to right, rgba(30, 58, 138, 0.9), rgba(33, 0, 31, 0.9))';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(to right, #1E3A8A, #21001f)';
+            }}
             asChild
           >
             <Link href="/auth">🚀 Get Started</Link>
@@ -64,7 +76,7 @@ export function Navigation2() {
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <div className="flex flex-col space-y-4 mt-8">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-semibold">🌐 Language</h2>
+                  <h2 className="text-lg font-semibold"> Language</h2>
                   <Suspense
                     fallback={
                       <div className="w-20 h-8 bg-muted rounded animate-pulse" />
@@ -111,7 +123,10 @@ export function Navigation2() {
 
                 <div className="border-t pt-4">
                   <Button
-                    className="w-full hover-lift bg-gradient-to-r from-primary to-purple-600"
+                    className="w-full hover-lift text-white"
+                    style={{ 
+                      background: 'linear-gradient(to right, #1E3A8A, #21001f)',
+                    }}
                     asChild
                     onClick={() => setIsOpen(false)}
                   >

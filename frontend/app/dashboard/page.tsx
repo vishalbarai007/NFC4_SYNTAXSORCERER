@@ -9,7 +9,12 @@ import { Navigation2 } from "@/components/navigation2";
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-800">
+    <div 
+      className="min-h-screen dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-800"
+      style={{
+        background: `linear-gradient(to bottom right, #dbe9f4, rgba(30, 58, 138, 0.1), rgba(33, 0, 31, 0.1))`
+      }}
+    >
       <Navigation2 />
       <div className="container py-4 md:py-8 px-4">
         <DashboardHeader />
@@ -18,7 +23,7 @@ export default function DashboardPage() {
             <ScriptHistory />
           </div>
           <div className="space-y-4 md:space-y-6 order-1 lg:order-2">
-            <ProgressMetrics />
+            {/* <ProgressMetrics /> */}
             <QuickActions />
           </div>
         </div>

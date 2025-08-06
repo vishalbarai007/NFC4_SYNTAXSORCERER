@@ -9,6 +9,7 @@ import { Edit, Save, Mic, FileText, Clock, AlertCircle } from "lucide-react"
 import { toast } from "sonner"
 import { VoiceModal } from "./voice-modal"
 import { useSettings } from "@/contexts/settings-context"
+import LightRays from "./LightRays"
 
 interface ScriptEditorProps {
   content: string
@@ -19,13 +20,13 @@ interface ScriptEditorProps {
   onSave?: () => Promise<void>
 }
 
-export function ScriptEditor({ 
-  content, 
-  onContentChange, 
-  scriptId, 
+export function ScriptEditor({
+  content,
+  onContentChange,
+  scriptId,
   scriptTitle,
   readonly = false,
-  onSave 
+  onSave
 }: ScriptEditorProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [localContent, setLocalContent] = useState(content)
@@ -65,12 +66,12 @@ export function ScriptEditor({
     try {
       // ✅ Update parent component with new content
       onContentChange(localContent)
-      
+
       // ✅ Call custom save handler if provided
       if (onSave) {
         await onSave()
       }
-      
+
       setIsEditing(false)
       setLastSaved(new Date())
       setHasChanges(false)
@@ -100,7 +101,7 @@ export function ScriptEditor({
       toast.error("Script is currently being processed")
       return
     }
-    
+
     // Add voice input to current content
     const newContent = localContent + '\n\n' + voiceText
     setLocalContent(newContent)
@@ -142,24 +143,24 @@ export function ScriptEditor({
     const words = localContent.split(/\s+/).filter(word => word.length > 0).length
     const characters = localContent.length
     const pages = Math.ceil(lines / 25) // Rough estimate: 25 lines per page
-    
+
     return { lines, words, characters, pages }
   }
 
   // ✅ Format last saved time
   const formatLastSaved = () => {
     if (!lastSaved) return "Never saved"
-    
+
     const now = new Date()
     const diffMs = now.getTime() - lastSaved.getTime()
     const diffMinutes = Math.floor(diffMs / 60000)
-    
+
     if (diffMinutes < 1) return "Just saved"
     if (diffMinutes < 60) return `Saved ${diffMinutes} minute${diffMinutes === 1 ? '' : 's'} ago`
-    
+
     const diffHours = Math.floor(diffMinutes / 60)
     if (diffHours < 24) return `Saved ${diffHours} hour${diffHours === 1 ? '' : 's'} ago`
-    
+
     return `Saved on ${lastSaved.toLocaleDateString()}`
   }
 
@@ -191,7 +192,7 @@ export function ScriptEditor({
                 </Badge>
               )}
             </div>
-            
+
             <div className="flex items-center gap-2 flex-wrap">
               {totalScenes > 0 && (
                 <Badge variant="outline" className="text-xs">
@@ -221,10 +222,10 @@ export function ScriptEditor({
               </Button>
 
               {!isEditing ? (
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="hover-lift" 
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hover-lift"
                   onClick={handleEdit}
                   disabled={readonly}
                 >
@@ -233,20 +234,20 @@ export function ScriptEditor({
                 </Button>
               ) : (
                 <div className="flex gap-2">
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="hover-lift" 
-                    onClick={handleSave} 
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="hover-lift"
+                    onClick={handleSave}
                     disabled={isSaving || !hasChanges}
                   >
                     <Save className="h-4 w-4 mr-2" />
                     {isSaving ? "💾 Saving..." : "💾 Save"}
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="hover-lift bg-transparent" 
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="hover-lift bg-transparent"
                     onClick={handleCancel}
                     disabled={isSaving}
                   >
@@ -260,6 +261,18 @@ export function ScriptEditor({
 
         {/* ✅ Main editor area */}
         <ScrollArea className="flex-1 p-2 md:p-4">
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#00ffff"
+            raysSpeed={1.5}
+            lightSpread={0.8}
+            rayLength={1.2}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0.1}
+            distortion={0.05}
+            className="custom-rays"
+          />
           {localContent ? (
             <div className="flex">
               {settings?.showLineNumbers && (
@@ -267,7 +280,7 @@ export function ScriptEditor({
                   {generateLineNumbers(localContent)}
                 </div>
               )}
-              
+
               {isEditing ? (
                 <Textarea
                   value={localContent}
@@ -321,8 +334,8 @@ export function ScriptEditor({
         </div>
       </div>
 
-      <VoiceModal 
-        isOpen={isVoiceModalOpen} 
+      <VoiceModal
+        isOpen={isVoiceModalOpen}
         onClose={() => setIsVoiceModalOpen(false)}
         onVoiceInput={handleVoiceInput}
       />
