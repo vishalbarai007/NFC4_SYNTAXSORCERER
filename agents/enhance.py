@@ -64,6 +64,22 @@ def enhance_script():
         json.dump(data, f, ensure_ascii=False, indent=4)
     print(f"✅ Enhancement complete. Output saved to {OUTPUT_FILE}")
 
+# enhance.py
+def enhance_script_file(input_file: str) -> dict:
+    with open(input_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    for scene in data.get("parsed_scenes", []):
+        dialogues = scene.get("dialogues", [])
+        for i in range(0, len(dialogues), BATCH_SIZE):
+            batch = dialogues[i:i+BATCH_SIZE]
+            enhanced_batch = enhance_lines(batch)
+            for j, enhanced in enumerate(enhanced_batch):
+                dialogues[i+j]["enhanced_line"] = enhanced["enhanced_line"]
+                dialogues[i+j]["tone_label"] = enhanced.get("tone_label", "neutral")
+
+    return data
+
 
 if __name__ == "__main__":
     enhance_script()

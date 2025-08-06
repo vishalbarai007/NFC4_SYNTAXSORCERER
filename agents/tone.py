@@ -5,7 +5,7 @@ from transformers import pipeline
 # Load the emotion classifier from Hugging Face
 classifier = pipeline("text-classification", model="nateraw/bert-base-uncased-emotion")
 
-def analyze_script(filename):
+def detect_tone(filename):
     with open(filename, 'r', encoding='utf-8') as f:
         script_data = json.load(f)
 
@@ -22,6 +22,8 @@ def analyze_script(filename):
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(script_data, f, indent=4, ensure_ascii=False)
 
+    return script_data
+
 if __name__ == "__main__":
-    analyze_script("script.json")  # <- Replace with your actual JSON file
+    detect_tone("script.json")  # <- Replace with your actual JSON file
     os._exit(0)
