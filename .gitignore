@@ -38,7 +38,6 @@ models/
 outputs/
 
 # Data / script inputs
-*.json
 *.csv
 *.tsv
 *.xlsx
