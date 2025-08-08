@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { Send } from "lucide-react";
 import ReactMarkdown from "react-markdown";
-import Navigation2 from "@/components/navigation2"
+import { Navigation2 } from "@/components/navigation2";
+// import Navigation2 from "@/components/navigation2"
 
 const ChatBot = () => {
 	const [messages, setMessages] = useState<
