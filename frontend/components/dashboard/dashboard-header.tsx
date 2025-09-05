@@ -1,25 +1,43 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Plus, Upload, BarChart3, MessageSquare, Users, Brain } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import {
+  Plus,
+  Upload,
+  BarChart3,
+  MessageSquare,
+  Users,
+  Brain,
+} from "lucide-react";
+import Link from "next/link";
 
 export function DashboardHeader() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-[#FFD700]">Welcome back, Writer! 👋</h1>
-          <p className="text-muted-foreground text-[#00BFAE]">Continue crafting your stories with AI-enhanced insights ✨</p>
+          <h1 className="text-3xl font-bold tracking-tight text-[#FFD700]">
+            Welcome back, Writer! 👋
+          </h1>
+          <p className="text-muted-foreground text-[#00BFAE]">
+            Continue crafting your stories with AI-enhanced insights ✨
+          </p>
         </div>
 
         <div className="flex gap-2">
-          <Button className="hover-lift bg-gradient-to-r from-primary to-purple-600" asChild>
+          <Button
+            className="hover-lift bg-gradient-to-r from-primary to-purple-600"
+            asChild
+          >
             <Link href="/upload">
               <Upload className="mr-2 h-4 w-4" /> Upload New Script
             </Link>
           </Button>
-          <Button variant="outline" className="hover-lift bg-transparent" asChild>
+          <Button
+            variant="outline"
+            className="hover-lift bg-transparent"
+            asChild
+          >
             <Link href="/workspace/new">
               <Plus className="mr-2 h-4 w-4" />
               ✍️ Start Writing
@@ -68,5 +86,5 @@ export function DashboardHeader() {
         </Button>
       </div>
     </div>
-  )
+  );
 }
